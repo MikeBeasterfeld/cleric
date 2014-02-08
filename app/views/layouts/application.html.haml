@@ -17,6 +17,8 @@
 							=link_to "Sign out", destroy_user_session_path, :method => :delete if user_signed_in?
 						%li
 							=link_to "Sign in", new_user_session_path if !user_signed_in?
+						%li
+							=link_to "Admin", rails_admin.dashboard_path if current_user.admin?
 		.container
 			.cleric-content
 				.row
@@ -24,3 +26,4 @@
 				.row
 					.col-md--12=alert
 				=yield
+			=debug(current_user) if Rails.env.development?
