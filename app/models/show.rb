@@ -2,6 +2,7 @@ class Show < ActiveRecord::Base
 	has_many :showhosts
 	has_many :users, :through => :showhosts
 
+	has_many :episodes
 
 	rails_admin do
     configure :showhosts do

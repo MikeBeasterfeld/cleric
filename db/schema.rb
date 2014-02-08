@@ -11,7 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140208164905) do
+ActiveRecord::Schema.define(version: 20140208174616) do
+
+  create_table "episodehosts", force: true do |t|
+    t.integer  "episode_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "episodes", force: true do |t|
+    t.string   "title"
+    t.integer  "number"
+    t.integer  "part"
+    t.text     "description"
+    t.text     "notes"
+    t.string   "media"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "show_id"
+  end
 
   create_table "showhosts", force: true do |t|
     t.integer  "show_id"

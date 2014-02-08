@@ -7,4 +7,20 @@
 					%br
 					%small=link_to show.name, show_url(show.id)
 	.col-md-3
-		%h4.text-center Recent Episodes
+		%h4.text-center
+			Recent Episodes
+		-while !@episodes.empty?
+			-episode = @episodes.pop
+			.row
+				.col-md-4
+					=link_to image_tag("missing_show.png", :width => 80, :height => 80), episode_url(episode.id)
+				.col-md-8
+					%strong=episode.show.name
+					%br
+					%em
+						Episode
+						=episode.number
+						=' Part ' + episode.part if !episode.part.nil?
+					%br
+					=link_to episode.title, episode_url(episode.id)
+
