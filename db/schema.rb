@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140208154730) do
+ActiveRecord::Schema.define(version: 20140208164905) do
 
   create_table "showhosts", force: true do |t|
     t.integer  "show_id"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20140208154730) do
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "icon"
   end
 
   create_table "shows_users", force: true do |t|

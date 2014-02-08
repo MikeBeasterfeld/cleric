@@ -20,10 +20,9 @@
 						%li
 							=link_to "Admin", rails_admin.dashboard_path if current_user.admin?
 		.container
-			.cleric-content
-				.row
-					.col-md-12=notice
-				.row
-					.col-md--12=alert
-				=yield
+			.row
+				.col-md-12=notice
+			.row
+				.col-md-12=alert
+			=yield
 			=debug(current_user) if Rails.env.development?
