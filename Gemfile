@@ -36,3 +36,5 @@ gem 'bootstrap-sass', '~> 3.1.0'
 gem 'haml-rails', '>= 0.5.3'
 
 gem 'rails_admin', '>= 0.6.1'
+
+gem 'devise'

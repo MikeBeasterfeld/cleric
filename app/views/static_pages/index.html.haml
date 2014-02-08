@@ -1,0 +1,5 @@
+%h2 Shows
+%ul
+	- @shows.each do |show|
+		%li
+			=link_to show.name, show_url(show.id)
