@@ -1,14 +1,16 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @show.name %>
-</p>
+.row
+	.col-md-4.text-center=image_tag("missing_show.png", :width => 260, :height => 260, :class => 'img-rounded')
+	.col-md-8
+		%h2=@show.name
 
-<p>
-  <strong>Description:</strong>
-  <%= @show.description %>
-</p>
+		%p.lead=@show.description
 
-<%= link_to 'Edit', edit_show_path(@show) %> |
-<%= link_to 'Back', shows_path %>
+		%p.lead	Hosted by #{@show.users.map { |host| link_to host.name, user_path(host) }.to_sentence}.
+.h3 Episodes
+- if @show.episodes.count > 0
+	- @show.episodes.each do |episode|
+		%p
+			=link_to episode.title, episode_path(episode)
+-else
+	%p No episodes have been added yet.
