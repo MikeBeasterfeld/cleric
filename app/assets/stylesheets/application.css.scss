@@ -1,7 +1,11 @@
 /*
  *= require_self
  *= require_tree .
+ *= stub scaffolds
  */
+
+$body-bg: #ccc;
+$brand-info: #fff;
 
 @import "bootstrap";
 
