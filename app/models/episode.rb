@@ -1,6 +1,6 @@
 class Episode < ActiveRecord::Base
 	has_many :episodehosts
-	has_many :users, :through => :episodehosts
+	has_many :hosts, :through => :episodehosts, :source => :user
 
 	belongs_to :show
 
