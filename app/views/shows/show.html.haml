@@ -11,6 +11,6 @@
 - if @show.episodes.count > 0
 	- @show.episodes.each do |episode|
 		%p
-			=link_to episode.title, episode_path(episode)
+			=link_to "\##{episode.full_title}", episode_path(episode)
 -else
 	%p No episodes have been added yet.
