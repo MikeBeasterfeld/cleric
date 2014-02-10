@@ -1,0 +1,9 @@
+.row
+	.col-md-4.text-center=image_tag("missing_show.png", :width => 260, :height => 260, :class => 'img-rounded')
+	.col-md-8
+		%h2=@show.name
+
+		%p.lead=@show.description
+
+		%p.lead	Hosted by #{@show.users.map { |host| link_to host.name, user_path(host) }.to_sentence}.
+		
