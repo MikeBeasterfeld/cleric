@@ -1,26 +1,29 @@
 .row
-	.col-md-9{ :style => 'padding-top: 30px'}
-		- @shows.each_with_index do |show, index|
-			.col-md-3
-				.center-block.text-center{ :style => 'padding-bottom: 30px'}
-					=link_to image_tag("missing_show.png", :width => 110, :height => 110, :class => 'img-rounded'), show_url(show.id)
-					%br
-					%small=link_to show.name, show_url(show.id)
-	.col-md-3{ :style => 'padding-bottrom: 30px'}
-		%h4.text-center
-			Recent Episodes
-		-while !@episodes.empty?
-			-episode = @episodes.pop
+	.col-md-9
+		.content-block{ :style => 'padding-top: 20px; padding-bottom: 0px' }
 			.row
-				.col-md-4
-					=link_to image_tag("missing_show.png", :width => 80, :height => 80, :class => 'img-rounded'), episode_url(episode.id)
-				.col-md-8
-					%strong=episode.show.name
-					%br
-					%em
-						Episode
-						=episode.number
-						=' Part ' + episode.part if !episode.part.nil?
-					%br
-					=link_to episode.title, episode_url(episode.id)
+				- @shows.each_with_index do |show, index|
+					.col-md-3
+						.center-block.text-center{ :style => 'padding-bottom: 30px'}
+							=link_to image_tag("missing_show.png", :width => 110, :height => 110, :class => 'img-rounded'), show_url(show.id)
+							%br
+							%small=link_to show.name, show_url(show.id)
+	.col-md-3{ :style => 'padding-bottrom: 30px'}
+		.content-block{ :style => 'padding-top: 5px' }
+			%h4.text-center
+				Recent Episodes
+			-while !@episodes.empty?
+				-episode = @episodes.pop
+				.row
+					.col-md-4
+						=link_to image_tag("missing_show.png", :width => 80, :height => 80, :class => 'img-rounded'), episode_url(episode.id)
+					.col-md-8
+						%strong=episode.show.name
+						%br
+						%em
+							Episode
+							=episode.number
+							=' Part ' + episode.part if !episode.part.nil?
+						%br
+						=link_to episode.title, episode_url(episode.id)
 

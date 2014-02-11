@@ -3,14 +3,16 @@
 
 .row
   .col-md-8
-    %h2{ :style => 'margin-top: 30px' }="\##{@episode.full_title}"
+    .content-block{ :style => 'padding-left: 20px; padding-top: 5px' }
+      %h2{ :style => 'margin-top: 30px' }="\##{@episode.full_title}"
 
-    %p.lead This episode hosted by #{@episode.hosts.map { |host| link_to host.name, user_path(host) }.to_sentence}.
+      %p.lead This episode hosted by #{@episode.hosts.map { |host| link_to host.name, user_path(host) }.to_sentence}.
 
-    -if @episode.guests.count > 0
-      %p.lead #{pluralize(@episode.guests.count, 'Guest')} for this episode were #{@episode.guests.map { |guest| link_to guest.name, user_path(guest) }.to_sentence}.
+      -if @episode.guests.count > 0
+        %p.lead #{pluralize(@episode.guests.count, 'Guest')} for this episode were #{@episode.guests.map { |guest| link_to guest.name, user_path(guest) }.to_sentence}.
 
-    %p=@episode.description
-    %p=@episode.notes
+      %p=@episode.description
+      %p=@episode.notes
   .col-md-4
-    2nd column
+    .content-block
+      2nd column

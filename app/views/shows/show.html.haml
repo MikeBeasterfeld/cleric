@@ -1,10 +1,16 @@
 
 =render 'partials/show_block'
 
-.h3 Episodes
-- if @show.episodes.count > 0
-	- @show.episodes.each do |episode|
-		%p
-			=link_to "\##{episode.full_title}", episode_path(episode)
--else
-	%p No episodes have been added yet.
+.row
+  .col-md-8
+    .content-block
+      .h3 Episodes
+      - if @show.episodes.count > 0
+        - @show.episodes.each do |episode|
+          %p
+            =link_to "\##{episode.full_title}", episode_path(episode)
+      -else
+        %p No episodes have been added yet.
+  .col-md-4
+    .content-block
+      2nd column

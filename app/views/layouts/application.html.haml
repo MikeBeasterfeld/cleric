@@ -25,4 +25,6 @@
 			.row
 				.col-md-12=alert
 			=yield
-			=debug(current_user) if Rails.env.development?
+			-if Rails.env.development?
+				.div{ :style => 'margin-top: 30px' }
+				=debug(current_user) if Rails.env.development?
