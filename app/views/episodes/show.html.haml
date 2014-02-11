@@ -7,8 +7,8 @@
 
     %p.lead This episode hosted by #{@episode.hosts.map { |host| link_to host.name, user_path(host) }.to_sentence}.
 
-    -# if @episode.guests.count > 0
-      -#%p.lead #{pluralize(@episode.guests.count, 'Guest') for this episode were #{@episode.guests.map { |guest| link_to guest.name, user_path(guest) }.to_sentence}.
+    -if @episode.guests.count > 0
+      %p.lead #{pluralize(@episode.guests.count, 'Guest')} for this episode were #{@episode.guests.map { |guest| link_to guest.name, user_path(guest) }.to_sentence}.
 
     %p=@episode.description
     %p=@episode.notes

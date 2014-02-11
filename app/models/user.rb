@@ -10,6 +10,9 @@ class User < ActiveRecord::Base
 	has_many :episodehosts
 	has_many :episodes, :through => :episodehosts
 
+  has_many :episodeguests
+  has_many :guestepisodes, :through => :episodeguests, :source => :episode
+
 	rails_admin do
     configure :showhosts do
       visible(false)
