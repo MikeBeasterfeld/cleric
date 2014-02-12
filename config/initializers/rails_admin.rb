@@ -32,7 +32,7 @@ RailsAdmin.config do |config|
     # history_show
   end
 
-  config.excluded_models = ["Showhost", "Episodehost"]
+  config.excluded_models = ["Showhost", "Episodehost", "Episodeguest"]
 
   config.authorize_with do |controller|
     redirect_to main_app.root_path unless current_user.try(:admin?)

@@ -8,10 +8,10 @@ class User < ActiveRecord::Base
 	has_many :shows, :through => :showhosts
 
 	has_many :episodehosts
-	has_many :episodes, :through => :episodehosts
+	has_many :hostepisodes, :through => :episodehosts, :source => :user
 
   has_many :episodeguests
-  has_many :guestepisodes, :through => :episodeguests, :source => :episode
+  has_many :guestepisodes, :through => :episodeguests, :source => :user
 
 	rails_admin do
     configure :showhosts do
