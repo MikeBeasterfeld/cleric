@@ -1,6 +1,5 @@
 class Show < ActiveRecord::Base
-  has_attached_file :image, :default_url => "missing_show.png"
-  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+  mount_uploader :showicon, ShowiconUploader
 
 	has_many :showhosts
 	has_many :hosts, :through => :showhosts, :source => :user
