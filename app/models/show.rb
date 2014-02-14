@@ -1,16 +1,11 @@
 class Show < ActiveRecord::Base
+  has_attached_file :image, :default_url => "missing_show.png"
+  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+
 	has_many :showhosts
 	has_many :hosts, :through => :showhosts, :source => :user
 
 	has_many :episodes
-
-  def image
-    if self.icon.nil? || self.icon.empty?
-      "missing_show.png"
-    else
-      self.icon
-    end
-  end
 
 	rails_admin do
     configure :showhosts do

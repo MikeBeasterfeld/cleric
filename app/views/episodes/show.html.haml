@@ -11,6 +11,10 @@
       -if @episode.guests.count > 0
         %p.lead #{pluralize(@episode.guests.count, 'Guest')} for this episode were #{@episode.guests.map { |guest| link_to guest.name, user_path(guest) }.to_sentence}.
 
+      -if !@episode.media.empty?
+        %p
+          %audio{ :src => @episode.media, :controls => "controls", :type => "audio/mp3" }
+
       %p=@episode.description
       %p=@episode.notes
   .col-md-4

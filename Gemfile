@@ -45,3 +45,12 @@ gem 'haml-rails', '>= 0.5.3'
 gem 'rails_admin', '>= 0.6.1'
 
 gem 'devise'
+
+gem 'mediaelement_rails'
+
+# file management
+gem 'carrierwave'
+
+# configuration
+gem 'dotenv'
+
