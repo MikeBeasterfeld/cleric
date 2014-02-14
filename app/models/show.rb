@@ -1,10 +1,19 @@
 class Show < ActiveRecord::Base
-  mount_uploader :showicon, ShowiconUploader
+  include FriendlyId
+  friendly_id :name, :use => :slugged
+
+  mount_uploader :icon, ShowiconUploader
 
 	has_many :showhosts
 	has_many :hosts, :through => :showhosts, :source => :user
 
 	has_many :episodes
+
+  validates_presence_of :name, :slug
+
+  def should_generate_new_friendly_id?
+    name_changed?
+  end
 
 	rails_admin do
     configure :showhosts do

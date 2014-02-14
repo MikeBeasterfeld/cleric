@@ -54,3 +54,5 @@ gem 'carrierwave'
 # configuration
 gem 'dotenv'
 
+# friendly urls
+gem 'friendly_id'

@@ -1,4 +1,7 @@
 class Episode < ActiveRecord::Base
+  include FriendlyId
+  friendly_id :number_and_part, :use => [:slugged, :scoped], :scope => :show
+
 	has_many :episodehosts
 	has_many :hosts, :through => :episodehosts, :source => :user
 
@@ -6,6 +9,15 @@ class Episode < ActiveRecord::Base
 	has_many :guests, :through => :episodeguests, :source => :user
 
 	belongs_to :show
+
+  def number_and_part
+    return "#{number}.#{part}" if !part.nil?
+    number
+  end
+
+  def should_generate_new_friendly_id?
+    number_changed? || part_changed?
+  end
 
 	def full_title
 		full_title = self.number.to_s
