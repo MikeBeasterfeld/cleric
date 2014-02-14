@@ -20,3 +20,5 @@ cookbooks
 tmp
 
 .env
+
+/public
