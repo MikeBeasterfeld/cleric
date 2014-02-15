@@ -27,4 +27,5 @@
 			=yield
 			-if Rails.env.development?
 				.div{ :style => 'margin-top: 30px' }
-				=debug(current_user) if Rails.env.development?
+				=debug(current_user) if Rails.env.development?	
+				=debug(params) if Rails.env.development?
