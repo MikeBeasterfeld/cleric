@@ -4,6 +4,8 @@ class Show < ActiveRecord::Base
 
   mount_uploader :icon, ShowiconUploader
 
+  default_scope { where(retired: false) }
+
 	has_many :showhosts
 	has_many :hosts, :through => :showhosts, :source => :user
 
