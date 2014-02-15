@@ -14,7 +14,7 @@
 				Recent Episodes
 			-while !@episodes.empty?
 				-episode = @episodes.pop
-				.row
+				.row{ :style => 'padding-bottom: 15px' }
 					.col-md-4
 						=link_to image_tag(episode.show.icon, :width => 80, :height => 80, :class => 'img-rounded'), [episode.show, episode]
 					.col-md-8
