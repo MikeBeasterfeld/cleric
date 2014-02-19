@@ -11,7 +11,7 @@ class Show < ActiveRecord::Base
 
 	has_many :episodes
 
-  validates_presence_of :name, :slug, :language
+  validates_presence_of :name, :slug, :language, :copyright
 
   after_initialize do
     if new_record?
