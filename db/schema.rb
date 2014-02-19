@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140215074109) do
+ActiveRecord::Schema.define(version: 20140219120914) do
 
   create_table "episodeguests", force: true do |t|
     t.datetime "created_at"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20140215074109) do
     t.string   "icon"
     t.string   "slug"
     t.boolean  "retired"
+    t.string   "language"
   end
 
   create_table "shows_users", force: true do |t|

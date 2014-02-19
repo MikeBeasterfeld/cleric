@@ -11,10 +11,20 @@ class Show < ActiveRecord::Base
 
 	has_many :episodes
 
-  validates_presence_of :name, :slug
+  validates_presence_of :name, :slug, :language
+
+  after_initialize do
+    if new_record?
+      self.language ||= 'en-us'
+    end
+  end
 
   def should_generate_new_friendly_id?
     name_changed?
+  end
+
+  def language_enum
+    ['en-us']
   end
 
 	rails_admin do
