@@ -3,7 +3,7 @@
 	%itunes:author author
 	%itunes:subtitle subtitle
 	%itunes:summary summary
-	%itunes:image{ :href => episode.show.icon }
+	%itunes:image{ :href => episode.show.image_full_url(request.host) }
 	%enclosure{ :url => episode.media, :length => 100, :type => 'audio/x-m4a' }
 	%guid http://example.com/show.mp3
 	%pubdate=episode.created_at

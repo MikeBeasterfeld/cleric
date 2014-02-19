@@ -13,7 +13,7 @@
 	%itunes:owner
 		%itunes:name=@show.owner.name
 		%itunes:email=@show.owner.email
-	%itunes:image{ :href => 'http://example.com' }
+	%itunes:image{ :href => @show.image_full_url(request.host) }
 	%itunes:category{ :text => 'Category' }
 		%itunes:category{ :text => 'Subcategory'}
 	%itunes:category{ :text => 'Category' }
