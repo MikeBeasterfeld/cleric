@@ -11,8 +11,8 @@
 	%itunes:summary=@show.description
 	%description=@show.description
 	%itunes:owner
-		%itunes:name owner name
-		%itunes:meail owner email
+		%itunes:name=@show.owner.name
+		%itunes:email=@show.owner.email
 	%itunes:image{ :href => 'http://example.com' }
 	%itunes:category{ :text => 'Category' }
 		%itunes:category{ :text => 'Subcategory'}

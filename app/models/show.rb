@@ -11,6 +11,8 @@ class Show < ActiveRecord::Base
 
 	has_many :episodes
 
+  belongs_to :owner, :class_name => 'User'
+
   validates_presence_of :name, :slug, :language, :copyright
 
   after_initialize do
