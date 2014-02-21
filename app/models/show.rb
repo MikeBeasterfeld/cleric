@@ -12,6 +12,7 @@ class Show < ActiveRecord::Base
 	has_many :episodes
 
   belongs_to :owner, :class_name => 'User'
+  belongs_to :itunescategory
 
   validates_presence_of :name, :slug, :language, :copyright
 
@@ -27,7 +28,7 @@ class Show < ActiveRecord::Base
   end
 
   def image_full_url(hostname)
-    return "http://#{hostname}/#{self.uploaded_image}" if self.uploaded_image.file
+    return "http://#{hostname}#{self.uploaded_image}" if self.uploaded_image.file
     self.remote_image
   end
 
@@ -49,4 +50,5 @@ class Show < ActiveRecord::Base
       # configuration here
     end
   end
+
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140219125201) do
+ActiveRecord::Schema.define(version: 20140221034353) do
 
   create_table "episodeguests", force: true do |t|
     t.datetime "created_at"
@@ -53,6 +53,13 @@ ActiveRecord::Schema.define(version: 20140219125201) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
 
+  create_table "itunescategories", force: true do |t|
+    t.string   "category"
+    t.string   "subcategory"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "showhosts", force: true do |t|
     t.integer  "show_id"
     t.integer  "user_id"
@@ -72,6 +79,7 @@ ActiveRecord::Schema.define(version: 20140219125201) do
     t.string   "copyright"
     t.integer  "owner_id"
     t.string   "remote_image"
+    t.integer  "itunescategory_id"
   end
 
   create_table "shows_users", force: true do |t|
