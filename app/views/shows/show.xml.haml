@@ -3,10 +3,11 @@
 	%channel
 		%title=@show.name
 		%link="http://#{request.host}#{show_path(@show)}"
+		%pubdate=@show.episodes.first.updated_at
 		%language=@show.language
 		%copyright=@show.copyright
 		%itunes:subtitle=@show.name
-		%itunes:author=@show.hosts.map { |host| host.name }.to_sentence
+		%itunes:author=@show.itunesauthor
 		%itunes:summary=@show.description
 		%description=@show.description
 		%itunes:owner

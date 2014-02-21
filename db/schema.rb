@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140221034353) do
+ActiveRecord::Schema.define(version: 20140221135830) do
 
   create_table "episodeguests", force: true do |t|
     t.datetime "created_at"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20140221034353) do
     t.integer  "owner_id"
     t.string   "remote_image"
     t.integer  "itunescategory_id"
+    t.string   "itunesauthor"
   end
 
   create_table "shows_users", force: true do |t|
