@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140221135830) do
+ActiveRecord::Schema.define(version: 20140222033135) do
 
   create_table "episodeguests", force: true do |t|
     t.datetime "created_at"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20140221135830) do
     t.datetime "updated_at"
     t.integer  "show_id"
     t.string   "slug"
+    t.string   "subtitle"
   end
 
   create_table "friendly_id_slugs", force: true do |t|

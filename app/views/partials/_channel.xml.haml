@@ -1,0 +1,22 @@
+!!! XML
+%rss{ 'xmlns:itunes' => 'http://www.itunes.com/dtds/podcast-1.0.dtd', 'version' => '2.0', 'xmlns:content' => 'http://purl.org/rss/1.0/modules/content/' }
+	%channel
+		%title=channel.name
+		%link="http://#{request.host}#{show_path(channel)}"
+		%pubdate=channel.episodes.first.updated_at
+		%language=channel.language
+		%copyright=channel.copyright
+		%itunes:subtitle=channel.name
+		%itunes:author=channel.itunesauthor
+		%itunes:summary=channel.description
+		%description=channel.description
+		%itunes:owner
+			%itunes:name=channel.owner.name
+			%itunes:email=channel.owner.email
+		%itunes:image{ :href => channel.image_full_url(request.host) }
+		%itunes:category{ :text => channel.itunescategory.category }
+			-if !channel.itunescategory.subcategory.nil?
+				%itunes:category{ :text => channel.itunescategory.subcategory }
+
+		- channel.episodes.each do | episode |
+			=render 'partials/episode', :episode => episode
