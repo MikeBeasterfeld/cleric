@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140222033135) do
+ActiveRecord::Schema.define(version: 20140311041147) do
+
+  create_table "cms_templates", force: true do |t|
+    t.text     "template"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "type"
+    t.string   "name"
+  end
 
   create_table "episodeguests", force: true do |t|
     t.datetime "created_at"

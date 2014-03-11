@@ -76,3 +76,10 @@ Itunescategory.create(category: 'Technology', subcategory: 'Software How-To')
 
 Itunescategory.create(category: 'TV & Film')
 
+CmsTemplates.create(name: 'index.liquid', type: 'page', template: '')
+CmsTemplates.create(name: 'show.liquid', type: 'page', template: '')
+CmsTemplates.create(name: 'episode.liquid', type: 'page', template: '')
+
+CmsTemplates.create(name: 'index.css', type: 'css', template: '')
+CmsTemplates.create(name: 'show.css', type: 'css', template: '')
+CmsTemplates.create(name: 'episode.css', type: 'css', template: '')
