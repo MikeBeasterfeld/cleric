@@ -1,6 +1,5 @@
 Cleric::Application.routes.draw do
 
-  Mercury::Engine.routes
   devise_for :users
 
   resources :users, :only => [:show, :index]
