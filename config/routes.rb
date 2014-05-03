@@ -1,5 +1,6 @@
 Cleric::Application.routes.draw do
 
+  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   devise_for :users
 
   resources :users, :only => [:show, :index]
