@@ -42,8 +42,6 @@ end
 gem 'bootstrap-sass', '~> 3.1.0'
 gem 'haml-rails', '>= 0.5.3'
 
-gem 'rails_admin', '>= 0.6.1'
-
 gem 'devise'
 
 gem 'mediaelement_rails'
@@ -57,14 +55,5 @@ gem 'dotenv'
 # friendly urls
 gem 'friendly_id'
 
-# liquid templates for customizations
-gem 'liquid'
-
-# html5 editor in rails admin
-gem 'bootstrap-wysihtml5-rails'
-
-# code editor in rails admin
-gem 'codemirror-rails'
-
 # HTML editor
-gem 'mercury-rails'
+gem 'bootsy'
