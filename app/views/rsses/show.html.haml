@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @rss.name
+
+= link_to 'Edit', edit_rss_path(@rss)
+\|
+= link_to 'Back', rsses_path

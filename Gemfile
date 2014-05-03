@@ -56,3 +56,15 @@ gem 'dotenv'
 
 # friendly urls
 gem 'friendly_id'
+
+# liquid templates for customizations
+gem 'liquid'
+
+# html5 editor in rails admin
+gem 'bootstrap-wysihtml5-rails'
+
+# code editor in rails admin
+gem 'codemirror-rails'
+
+# HTML editor
+gem 'mercury-rails'

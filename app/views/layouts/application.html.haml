@@ -11,14 +11,17 @@
 			.container
 				.navbar-header
 					=link_to "Home", root_url, :class => 'navbar-brand'
+					=link_to "Shows", root_url, :class => 'navbar-brand'
+					=link_to "Feeds", root_url, :class => 'navbar-brand'
+					=link_to "Blog", root_url, :class => 'navbar-brand'
 				.collapse.navbar-collapse
 					%ul.nav.navbar-nav.pull-right
+						%li
+							=link_to "Edit", @current_page_edit_path if user_signed_in?
 						%li
 							=link_to "Sign out", destroy_user_session_path, :method => :delete if user_signed_in?
 						%li
 							=link_to "Sign in", new_user_session_path if !user_signed_in?
-						%li
-							=link_to "Admin", rails_admin.dashboard_path if user_signed_in? && current_user.admin?
 		.container
 			.row
 				.col-md-12=notice

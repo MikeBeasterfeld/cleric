@@ -1,5 +1,6 @@
 class Show < ActiveRecord::Base
   include FriendlyId
+
   friendly_id :name, :use => :slugged
 
   mount_uploader :uploaded_image, ShowiconUploader
@@ -40,15 +41,9 @@ class Show < ActiveRecord::Base
     ['en-us']
   end
 
-	rails_admin do
-    configure :showhosts do
-      visible(false)
-    end
 
-    configure :hosts do
-      orderable(true) # only for multiselect widget currently. Will add the possibility to order blocks
-      # configuration here
-    end
+  def to_liquid
+    { name: self.name, image: self.image }
   end
 
 end
