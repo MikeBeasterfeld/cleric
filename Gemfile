@@ -57,3 +57,6 @@ gem 'friendly_id'
 
 # HTML editor
 gem 'bootsy'
+
+# simple form
+gem 'simple_form'

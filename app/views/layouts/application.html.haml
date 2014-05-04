@@ -12,12 +12,14 @@
 				.navbar-header
 					=link_to "Home", root_url, :class => 'navbar-brand'
 					=link_to "Shows", root_url, :class => 'navbar-brand'
-					=link_to "Feeds", root_url, :class => 'navbar-brand'
+					=link_to "Feeds", rss_feeds_url, :class => 'navbar-brand'
 					=link_to "Blog", root_url, :class => 'navbar-brand'
 				.collapse.navbar-collapse
 					%ul.nav.navbar-nav.pull-right
 						%li
-							=link_to "Edit", @current_page_edit_path if user_signed_in?
+							=link_to "New", @new_object_path if user_signed_in? && !@new_object_path.nil?
+						%li
+							=link_to "Edit", @edit_object_path if user_signed_in? && !@edit_object_path.nil?
 						%li
 							=link_to "Sign out", destroy_user_session_path, :method => :delete if user_signed_in?
 						%li

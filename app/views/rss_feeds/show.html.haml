@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @rss_feed.name
+%p
+  %b Order:
+  = @rss_feed.order
+
+= link_to 'Edit', edit_rss_feed_path(@rss_feed)
+\|
+= link_to 'Back', rss_feeds_path

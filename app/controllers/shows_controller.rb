@@ -10,6 +10,7 @@ class ShowsController < ApplicationController
   # GET /shows/1
   # GET /shows/1.json
   def show
+    @edit_object_path = edit_show_path(@show)
   end
 
   # GET /shows/new

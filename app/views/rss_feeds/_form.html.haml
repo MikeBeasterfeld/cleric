@@ -1,0 +1,12 @@
+= simple_form_for @rss_feed do |f|
+  - if @rss_feed.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@rss_feed.errors.count, "error")} prohibited this rss_feed from being saved:"
+      %ul
+        - @rss_feed.errors.full_messages.each do |msg|
+          %li= msg
+  =f.input :name
+  =f.input :order
+  =f.input :slug
+  =f.association :shows, as: :check_boxes
+  =f.button :submit

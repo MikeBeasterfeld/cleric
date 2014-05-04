@@ -1,0 +1,18 @@
+=simple_form_for @show do |f|
+  - if @show.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@show.errors.count, "error")} prohibited this show from being saved:"
+      %ul
+        - @show.errors.full_messages.each do |msg|
+          %li= msg
+  =f.input :name
+  =f.input :description, :input_html => {:rows => 20, :cols => 150}, as: :bootsy
+  =f.input :slug
+  =f.input :retired
+  =f.input :language
+  =f.input :copyright
+  =f.association :owner, :as => :select
+  =f.association :itunescategory, :as => :select
+  =f.input :itunesauthor
+  =f.button :submit
+

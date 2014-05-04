@@ -1,5 +1,6 @@
 class Show < ActiveRecord::Base
   include FriendlyId
+  include Bootsy::Container
 
   friendly_id :name, :use => :slugged
 
@@ -11,6 +12,9 @@ class Show < ActiveRecord::Base
 	has_many :hosts, :through => :showhosts, :source => :user
 
 	has_many :episodes
+
+  has_many :rss_feed_shows
+  has_many :rss_feeds, :through => :rss_feed_shows
 
   belongs_to :owner, :class_name => 'User'
   belongs_to :itunescategory

@@ -1,15 +1,17 @@
-class RssesController < ApplicationController
+class RssController < ApplicationController
   before_action :set_rss, only: [:show, :edit, :update, :destroy]
 
   # GET /rsses
   # GET /rsses.json
   def index
     @rsses = Rss.all
+    @new_object_path = new_rss_path
   end
 
   # GET /rsses/1
   # GET /rsses/1.json
   def show
+     @edit_object_path = edit_rss_path(@rss)
   end
 
   # GET /rsses/new

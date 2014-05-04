@@ -4,7 +4,7 @@
 		.col-md-8
 			%h2=link_to @show.name, show_path(@show)
 
-			%p.lead=@show.description
+			%p.lead=@show.description.html_safe
 
 			%p.lead	Hosted by #{@show.hosts.map { |host| link_to host.name, user_path(host) }.to_sentence}.
 

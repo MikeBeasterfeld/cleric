@@ -5,4 +5,8 @@ class StaticPagesController < ApplicationController
 		@episodes = Episode.order("id desc").limit(5)
 	end
 
+  def edit
+    
+  end
+
 end

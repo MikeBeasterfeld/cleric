@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140503041646) do
+ActiveRecord::Schema.define(version: 20140503133004) do
+
+  create_table "bootsy_image_galleries", force: true do |t|
+    t.integer  "bootsy_resource_id"
+    t.string   "bootsy_resource_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "bootsy_images", force: true do |t|
+    t.string   "image_file"
+    t.integer  "image_gallery_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "cms_templates", force: true do |t|
     t.text     "template"
@@ -67,6 +81,23 @@ ActiveRecord::Schema.define(version: 20140503041646) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "rss_feed_shows", force: true do |t|
+    t.integer  "show_id"
+    t.integer  "rss_feed_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rss_feeds", force: true do |t|
+    t.string   "name"
+    t.integer  "order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "slug"
+  end
+
+  add_index "rss_feeds", ["slug"], name: "index_rss_feeds_on_slug", unique: true
 
   create_table "rsses", force: true do |t|
     t.string   "name"
