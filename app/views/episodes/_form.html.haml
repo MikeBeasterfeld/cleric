@@ -1,28 +1,22 @@
-= form_for @episode do |f|
+= simple_form_for [@episode.show, @episode] do |f|
   - if @episode.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@episode.errors.count, "error")} prohibited this episode from being saved:"
+      %h2= "#{pluralize(@rss_feed.errors.count, "error")} prohibited this rss_feed from being saved:"
       %ul
         - @episode.errors.full_messages.each do |msg|
           %li= msg
+  =f.input :title
+  =f.input :subtitle
+  =f.input :number
+  =f.input :part
+  =f.input :slug
+  =f.input :description, :input_html => {:rows => 20, :cols => 150}, as: :bootsy
+  =f.input :uploaded_image, as: :image_preview, input_html: {preview_version: :thumb}
+  =f.input :notes
+  =f.input :media
+  =f.association :show
+  =f.association :hosts
+  =f.association :guests
 
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :number
-    = f.number_field :number
-  .field
-    = f.label :part
-    = f.number_field :part
-  .field
-    = f.label :description
-    = f.text_area :description
-  .field
-    = f.label :notes
-    = f.text_area :notes
-  .field
-    = f.label :media
-    = f.text_field :media
-  .actions
-    = f.submit 'Save'
+  =f.button :submit
+

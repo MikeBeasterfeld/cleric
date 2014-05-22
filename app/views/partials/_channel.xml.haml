@@ -13,7 +13,7 @@
 		%itunes:owner
 			%itunes:name=channel.owner.name
 			%itunes:email=channel.owner.email
-		%itunes:image{ :href => channel.image_full_url(request.host) }
+		%itunes:image{ :href => channel.image }
 		%itunes:category{ :text => channel.itunescategory.category }
 			-if !channel.itunescategory.subcategory.nil?
 				%itunes:category{ :text => channel.itunescategory.subcategory }

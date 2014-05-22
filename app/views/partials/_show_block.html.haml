@@ -1,15 +1,18 @@
+.header{ :style => 'z-index: -10; margin-top: -200px; top: 0; left: 0; right: 0; position: absolute; opacity: 0.2; -moz-opacity: 0.2; -webkit-opacity: 0.2' }
+  =image_tag(@show.image, :width => '100%')
+  
 .jumbotron
-	.row
-		.col-md-4.text-center=image_tag(@show.image, :width => 260, :height => 260, :class => 'img-rounded')
-		.col-md-8
-			%h2=link_to @show.name, show_path(@show)
+  .row
+    .col-md-4.text-center=image_tag(@show.image, :width => 260, :height => 260, :class => 'img-rounded')
+    .col-md-8
+      %h2=link_to @show.name, show_path(@show)
 
-			%p.lead=@show.description.html_safe
+      %p.lead=@show.description.html_safe
 
-			%p.lead	Hosted by #{@show.hosts.map { |host| link_to host.name, user_path(host) }.to_sentence}.
+      %p.lead Hosted by #{@show.hosts.map { |host| link_to host.name, user_path(host) }.to_sentence}.
 
-			%hr{ :style => 'border-top: 1px solid #999' }
+      %hr{ :style => 'border-top: 1px solid #999' }
 
-			%p
-				=link_to 'RSS', show_path(@show, :format => 'xml')
+      %p
+        =link_to 'RSS', show_path(@show, :format => 'xml')
 

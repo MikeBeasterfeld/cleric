@@ -1,5 +1,5 @@
 %item
-	%title=episode.title
+	%title="#{episode.show.name} #{episode.number_and_part}: #{episode.title}"
 	%itunes:author=episode.hosts.map { |host| host.name }.to_sentence
 	%itunes:subtitle=episode.subtitle
 	%description=episode.description

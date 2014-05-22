@@ -1,0 +1,16 @@
+-path = @user.id.nil? ? create_user_users_path : edit_user_path(@user)
+
+=simple_form_for @user, :url => path do |f|
+  -if @user.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+      %ul
+        - @user.errors.full_messages.each do |msg|
+          %li= msg
+  =f.input :username
+  =f.input :name
+  =f.input :bio
+  =f.input :twitter
+  =f.input :email
+  =f.button :submit
+

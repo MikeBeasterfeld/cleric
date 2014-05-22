@@ -4,12 +4,14 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    @new_object_path = new_user_path
     @users = User.all
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
+    @edit_object_path = edit_user_path(@user)
   end
 
   # GET /users/new
@@ -25,6 +27,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    @user.password = @user.password_confirmation = SecureRandom.hex
 
     respond_to do |format|
       if @user.save
@@ -69,6 +72,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :name, :bio, :twitter)
+      params.require(:user).permit(:username, :name, :bio, :twitter, :password, :password_confirmation, :email)
     end
 end

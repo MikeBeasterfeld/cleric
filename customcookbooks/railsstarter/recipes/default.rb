@@ -4,6 +4,7 @@ include_recipe "sqlite-dev"
 include_recipe "nodejs::default"
 include_recipe "rbenv::default"
 include_recipe "rbenv::ruby_build"
+include_recipe "imagemagick::devel"
 
 rbenv_ruby ruby_version do
   global true

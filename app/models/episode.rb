@@ -1,6 +1,11 @@
 class Episode < ActiveRecord::Base
+  include Bootsy::Container
+
   include FriendlyId
   friendly_id :number_and_part, :use => [:slugged, :scoped], :scope => :show
+
+  mount_uploader :uploaded_image, EpisodeiconUploader
+
 
 	has_many :episodehosts
 	has_many :hosts, :through => :episodehosts, :source => :user

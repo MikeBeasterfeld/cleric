@@ -71,6 +71,6 @@ class RssFeedsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rss_feed_params
-      params.require(:rss_feed).permit(:name, :order, :show_ids => [])
+      params.require(:rss_feed).permit(:name, :order, :slug, :description, :owner_id, :itunescategory_id, :itunesauthor, :uploaded_image, :show_ids => [])
     end
 end

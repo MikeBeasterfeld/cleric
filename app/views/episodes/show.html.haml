@@ -1,22 +1,23 @@
-
-=render 'partials/show_block'
-
+.header{ :style => 'z-index: -10; top: 0; left: 0; right: 0; position: absolute; opacity: 0.2; -moz-opacity: 0.2; -webkit-opacity: 0.2' }
+  =image_tag(@episode.uploaded_image, :width => '100%')
+  
 .row
-  .col-md-8
+  .col-md-12
     .content-block{ :style => 'padding-left: 20px; padding-top: 5px' }
       %h2{ :style => 'margin-top: 30px' }="\##{@episode.full_title}"
 
       %p.lead This episode hosted by #{@episode.hosts.map { |host| link_to host.name, user_path(host) }.to_sentence}.
 
-      -if @episode.guests.count > 0
-        %p.lead #{pluralize(@episode.guests.count, 'Guest')} for this episode were #{@episode.guests.map { |guest| link_to guest.name, user_path(guest) }.to_sentence}.
+      -if @episode.guests.count == 1
+        %p.lead
+          Guest for this episode was #{@episode.guests.map { |guest| link_to guest.name, user_path(guest) }.to_sentence}.
+      -elsif @episode.guests.count > 1
+        %p.lead 
+          Guests for this episode were #{@episode.guests.map { |guest| link_to guest.name, user_path(guest) }.to_sentence}.
 
       -if !@episode.media.empty?
         %p
           %audio{ :src => @episode.media, :controls => "controls", :type => "audio/mp3" }
 
-      %p=@episode.description
+      %p=@episode.description.html_safe
       %p=@episode.notes
-  .col-md-4
-    .content-block
-      2nd column

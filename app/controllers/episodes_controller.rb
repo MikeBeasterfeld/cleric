@@ -11,11 +11,13 @@ class EpisodesController < ApplicationController
   # GET /episodes/1.json
   def show
     @show = @episode.show
+    @edit_object_path = edit_show_episode_url(@show, @episode)
   end
 
   # GET /episodes/new
   def new
     @episode = Episode.new
+    @new_object_path = new_show_episode_path
   end
 
   # GET /episodes/1/edit
@@ -43,7 +45,7 @@ class EpisodesController < ApplicationController
   def update
     respond_to do |format|
       if @episode.update(episode_params)
-        format.html { redirect_to @episode, notice: 'Episode was successfully updated.' }
+        format.html { redirect_to show_episode_path(@episode.show, @episode), notice: 'Episode was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -70,6 +72,7 @@ class EpisodesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def episode_params
-      params.require(:episode).permit(:title, :number, :part, :description, :notes, :media)
+      params.require(:episode).permit(:title, :subtitle, :number, :part, :description, :notes, :media, :slug, :show_id, :uploaded_image, :bootsy_image_gallery_id, :host_ids => [], :guest_ids => [])
     end
 end
+

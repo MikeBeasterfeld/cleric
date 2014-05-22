@@ -60,3 +60,10 @@ gem 'bootsy'
 
 # simple form
 gem 'simple_form'
+
+# fancy uploader for simple_form
+gem 'simple_form_fancy_uploads'
+
+gem 'rmagick'
+
+gem 'cancancan'

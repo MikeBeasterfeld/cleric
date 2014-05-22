@@ -8,11 +8,12 @@
   =f.input :name
   =f.input :description, :input_html => {:rows => 20, :cols => 150}, as: :bootsy
   =f.input :slug
+  =f.input :uploaded_image, as: :image_preview, input_html: {preview_version: :thumb}
   =f.input :retired
   =f.input :language
   =f.input :copyright
   =f.association :owner, :as => :select
-  =f.association :itunescategory, :as => :select
+  =f.association :itunescategory, label_method: :name, :as => :select
   =f.input :itunesauthor
+  =f.association :hosts
   =f.button :submit
-
