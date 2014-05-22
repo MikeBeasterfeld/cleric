@@ -4,10 +4,11 @@
 	%itunes:subtitle=episode.subtitle
 	%description=episode.description
 	%itunes:summary=episode.description
-	%itunes:image{ :href => episode.show.image_full_url(request.host) }
+	-if episode.uploaded_image.present?
+		%itunes:image{ :href => request.protocol + request.host_with_port + episode.uploaded_image.url }
 	%enclosure{ :url => episode.media, :length => 100, :type => 'audio/x-m4a' }
 	%content:encoded=episode.notes
-	%link="http://#{request.host}#{show_episode_path(episode.show, episode)}"
-	%guid="http://#{request.host}#{show_episode_path(episode.show, episode)}"
+	%link=show_episode_url(episode.show, episode)
+	%guid=show_episode_url(episode.show, episode)
 	%pubdate=episode.created_at
 	%itunes:duration 8:00

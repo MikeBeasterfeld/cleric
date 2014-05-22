@@ -1,0 +1,13 @@
+%h1 Listing shows
+
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th Description
+  %tbody
+    -@shows.each do |show|
+      %tr
+        %td=link_to show.name, show
+        %td=show.description
+

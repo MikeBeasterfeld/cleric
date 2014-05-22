@@ -4,6 +4,7 @@ class ShowsController < ApplicationController
   # GET /shows
   # GET /shows.json
   def index
+    @new_object_path = new_show_path
     @shows = Show.all
   end
 

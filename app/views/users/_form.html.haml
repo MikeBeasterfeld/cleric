@@ -7,10 +7,10 @@
       %ul
         - @user.errors.full_messages.each do |msg|
           %li= msg
-  =f.input :username
   =f.input :name
-  =f.input :bio
+  =f.input :bio, :input_html => {:rows => 20, :cols => 150}, as: :bootsy
   =f.input :twitter
   =f.input :email
+  =f.input :admin if current_user.admin
   =f.button :submit
 

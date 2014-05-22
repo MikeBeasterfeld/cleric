@@ -1,22 +1,11 @@
-%h1 Listing rss_feeds
+%h1 RSS Feeds
 
-%table
-  %tr
-    %th Name
-    %th Order
-    %th
-    %th
-    %th
-
-  - @rss_feeds.each do |rss_feed|
+%table.table
+  -@rss_feeds.each do |rss_feed|
     %tr
-      %td= rss_feed.name
-      %td= rss_feed.order
-      %td= link_to 'Show', rss_feed
-      %td= link_to 'Edit', edit_rss_feed_path(rss_feed)
-      %td= link_to 'Destroy', rss_feed, :method => :delete, :data => { :confirm => 'Are you sure?' }
-      %td= link_to 'XML', rss_feed_path(rss_feed, :format => 'xml')
+      %td=link_to image_tag(rss_feed.uploaded_image, :width => 110, :height => 110, :class => 'img-rounded'), rss_feed
+      %td=link_to rss_feed.name, rss_feed
+      %td=rss_feed.description
+      %td=link_to 'XML', rss_feed_path(rss_feed, :format => 'xml')
 
 %br
-
-= link_to 'New Rss feed', new_rss_feed_path
