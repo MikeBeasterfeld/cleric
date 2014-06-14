@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   devise :invitable, :database_authenticatable, 
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :showhosts
+	has_many :showhosts
 	has_many :shows, :through => :showhosts
 
 	has_many :episodehosts

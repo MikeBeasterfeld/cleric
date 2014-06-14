@@ -6,7 +6,6 @@
   %thead
     %tr
       %th Name
-      %th Slug
       %th Email
       %th Bio
       %th Twitter
@@ -18,7 +17,6 @@
     -@users.each do |user|
       %tr
         %td=user.name
-        %td=user.slug
         %td=user.email
         %td=user.bio
         %td=user.twitter
