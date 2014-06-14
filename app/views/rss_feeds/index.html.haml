@@ -4,8 +4,7 @@
   -@rss_feeds.each do |rss_feed|
     %tr
       %td=link_to image_tag(rss_feed.uploaded_image, :width => 110, :height => 110, :class => 'img-rounded'), rss_feed
-      %td=link_to rss_feed.name, rss_feed
+      %td=link_to rss_feed.name, rss_feed_path(rss_feed, :format => 'xml')
       %td=rss_feed.description
-      %td=link_to 'XML', rss_feed_path(rss_feed, :format => 'xml')
 
 %br

@@ -1,22 +1,42 @@
 class ShowsController < ApplicationController
-  before_action :set_show, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource :show, :find_by => :slug, :except => [:next]
 
   # GET /shows
   # GET /shows.json
   def index
-    @new_object_path = new_show_path
-    @shows = Show.all
+    @resource = Show.new
+  end
+
+  def next
+    authorize! :read, Show
+    authorize! :read, Episode
+
+    @show = Show.friendly.find(params[:show_id])
+
+    @episode = @show.latest
+
+    puts @episode
+
+    if @episode.empty?
+      redirect_to @show, :alert => 'No episodes found for this show'
+    elsif @episode.live
+      redirect_to [@show, @episode]
+    else
+      render 'episodes/show'
+    end
   end
 
   # GET /shows/1
   # GET /shows/1.json
   def show
-    @edit_object_path = edit_show_path(@show)
+    @resource = @show
+    @episodes = @show.episodes.accessible_by(current_ability)
+    @episodes = @episodes.where(:live => true) if !current_user.try('admin?')
   end
 
   # GET /shows/new
   def new
-    @show = Show.new
+    @resource = @show
   end
 
   # GET /shows/1/edit
@@ -64,11 +84,6 @@ class ShowsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_show
-      @show = Show.friendly.find(params[:id])
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def show_params
       params.require(:show).permit(:name, :description, :slug, :uploaded_image, :retired, :language, :copyright, :owner_id, :itunescategory_id, :itunesauthor, :host_ids => [])

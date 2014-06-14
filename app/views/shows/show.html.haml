@@ -5,10 +5,14 @@
   .col-md-8
     .content-block
       .h3 Episodes
-      - if @show.episodes.count > 0
-        - @show.episodes.each do |episode|
+      - if !@episodes.nil? && @episodes.count > 0
+        - @episodes.each do |episode|
           %p
             =link_to "\##{episode.full_title}", [@show, episode]
+            -if !episode.live
+              %span.label.label-danger Not Live
+            -if episode.preview && !episode.live
+              %span.label.label-warning Preview
       -else
         %p No episodes have been added yet.
   .col-md-4

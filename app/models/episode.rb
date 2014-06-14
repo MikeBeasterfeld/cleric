@@ -6,7 +6,6 @@ class Episode < ActiveRecord::Base
 
   mount_uploader :uploaded_image, EpisodeiconUploader
 
-
 	has_many :episodehosts
 	has_many :hosts, :through => :episodehosts, :source => :user
 
@@ -14,6 +13,8 @@ class Episode < ActiveRecord::Base
 	has_many :guests, :through => :episodeguests, :source => :user
 
 	belongs_to :show
+
+  scope :latest, -> { order(created_at: :desc).first }
 
   def number_and_part
     return "#{number}.#{part}" if !part.nil?

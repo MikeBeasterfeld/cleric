@@ -1,12 +1,9 @@
 class StaticPagesController < ApplicationController
+  load_and_authorize_resource :show, :parent => false
+  load_and_authorize_resource :episode, :parent => false
 
 	def index
-		@shows = Show.all
-		@episodes = Episode.order("id desc").limit(5)
+    @episodes = @episodes.where(:live => true) if !current_user.try('admin?')
 	end
-
-  def edit
-    
-  end
 
 end

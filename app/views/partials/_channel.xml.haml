@@ -18,5 +18,5 @@
 			-if !channel.itunescategory.subcategory.nil?
 				%itunes:category{ :text => channel.itunescategory.subcategory }
 
-		- channel.episodes.each do | episode |
+		- episodes.each do | episode |
 			=render 'partials/episode', :episode => episode

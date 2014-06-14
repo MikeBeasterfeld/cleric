@@ -8,6 +8,7 @@
         - @user.errors.full_messages.each do |msg|
           %li= msg
   =f.input :name
+  =f.input :slug
   =f.input :bio, :input_html => {:rows => 20, :cols => 150}, as: :bootsy
   =f.input :twitter
   =f.input :email

@@ -1,17 +1,16 @@
 class EpisodesController < ApplicationController
-  before_action :set_episode, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource :show, :find_by => :slug
+  load_and_authorize_resource :episode, :through => :show, :find_by => :slug
 
   # GET /episodes
   # GET /episodes.json
   def index
-    @episodes = Episode.all
   end
 
   # GET /episodes/1
   # GET /episodes/1.json
   def show
-    @show = @episode.show
-    @edit_object_path = edit_show_episode_url(@show, @episode)
+    @resource = [@show, @episode]
   end
 
   # GET /episodes/new
@@ -72,7 +71,7 @@ class EpisodesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def episode_params
-      params.require(:episode).permit(:title, :subtitle, :number, :part, :description, :notes, :media, :slug, :show_id, :uploaded_image, :bootsy_image_gallery_id, :host_ids => [], :guest_ids => [])
+      params.require(:episode).permit(:title, :subtitle, :number, :part, :description, :notes, :media, :slug, :show_id, :uploaded_image, :bootsy_image_gallery_id, :live, :preview, :host_ids => [], :guest_ids => [])
     end
 end
 

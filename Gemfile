@@ -43,6 +43,7 @@ gem 'bootstrap-sass', '~> 3.1.0'
 gem 'haml-rails', '>= 0.5.3'
 
 gem 'devise'
+gem 'devise_invitable'
 
 gem 'mediaelement_rails'
 
@@ -67,3 +68,7 @@ gem 'simple_form_fancy_uploads'
 gem 'rmagick'
 
 gem 'cancancan'
+
+gem 'quiet_assets'
+
+gem 'carrierwave-ftp', :require => 'carrierwave/storage/ftp'

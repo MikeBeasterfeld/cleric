@@ -11,6 +11,7 @@ Cleric::Application.routes.draw do
   end
 
   resources :shows do
+    get :next
   	resources :episodes
   end
 

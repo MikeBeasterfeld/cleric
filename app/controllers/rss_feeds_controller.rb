@@ -1,17 +1,18 @@
 class RssFeedsController < ApplicationController
-  before_action :set_rss_feed, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource :rss_feed, :find_by => :slug
 
   # GET /rss_feeds
   # GET /rss_feeds.json
   def index
-    @rss_feeds = RssFeed.all
-    @new_object_path = new_rss_feed_path
+    @resource = RssFeed.new
   end
 
   # GET /rss_feeds/1
   # GET /rss_feeds/1.json
   def show
-    @edit_object_path = edit_rss_feed_path(@rss_feed)
+    @resource = @rss_feed
+    @episodes = @rss_feed.episodes.accessible_by(current_ability)
+    @episodes = @episodes.where(:live => true) if !current_user.try('admin?')
   end
 
   # GET /rss_feeds/new

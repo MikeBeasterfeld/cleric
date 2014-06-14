@@ -16,7 +16,7 @@
 					=link_to "Blog", root_url, :class => 'navbar-brand'
 				.collapse.navbar-collapse
 					%ul.nav.navbar-nav.pull-right
-						-if user_signed_in?
+						-if current_user.try('admin?')
 							%li.dropdown 
 								%a.dropdown-toggle{ :href => '#', 'data-toggle' => 'dropdown' }
 									Admin
@@ -27,9 +27,9 @@
 									%li
 										=link_to "Something", '#'
 						%li
-							=link_to "New", @new_object_path if user_signed_in? && !@new_object_path.nil?
+							=link_to "New #{@resource.class}", new_polymorphic_url(@resource) if (can? :create, @resource) rescue ""
 						%li
-							=link_to "Edit", @edit_object_path if user_signed_in? && !@edit_object_path.nil?
+							=link_to "Edit this #{@resource.class}", edit_polymorphic_url(@resource) if (can? :edit, @resource) rescue ""
 						%li
 							=link_to "Sign out", destroy_user_session_path, :method => :delete if user_signed_in?
 						%li
@@ -38,7 +38,10 @@
 			.row
 				.col-md-12=notice
 			.row
-				.col-md-12=alert
+				.col-md-12
+					.alert.alert-info=alert
 			=yield
 			-if Rails.env.development?
 				.div{ :style => 'margin-top: 30px' }
+
+=debug(current_user) if Rails.env.development?

@@ -3,7 +3,8 @@
   
 .jumbotron
   .row
-    .col-md-4.text-center=image_tag(@show.image, :width => 260, :height => 260, :class => 'img-rounded')
+    .col-md-4.text-center
+      %img{:src => @show.image, :width => 260, :height => 260, :class => 'img-rounded'}
     .col-md-8
       %h2=link_to @show.name, show_path(@show)
 

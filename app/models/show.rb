@@ -1,12 +1,9 @@
 class Show < ActiveRecord::Base
   include FriendlyId
   include Bootsy::Container
-
   friendly_id :name, :use => :slugged
 
   mount_uploader :uploaded_image, ShowiconUploader
-
-  default_scope { where(retired: false) }
 
 	has_many :showhosts
 	has_many :hosts, :through => :showhosts, :source => :user
@@ -46,8 +43,8 @@ class Show < ActiveRecord::Base
   end
 
 
-  def to_liquid
-    { name: self.name, image: self.image }
+  def latest
+    self.episodes.latest
   end
 
 end
