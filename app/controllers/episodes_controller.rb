@@ -10,17 +10,17 @@ class EpisodesController < ApplicationController
   # GET /episodes/1
   # GET /episodes/1.json
   def show
-    @resource = [@show, @episode]
   end
+    @resource = [@show, @episode]
 
   # GET /episodes/new
   def new
-    @episode = Episode.new
-    @new_object_path = new_show_episode_path
+    @resource = [@show, @episode]
   end
 
   # GET /episodes/1/edit
   def edit
+    @resource = [@show, @episode]
   end
 
   # POST /episodes

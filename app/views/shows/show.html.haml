@@ -5,8 +5,10 @@
   .col-md-8
     .content-block
       .h3 Episodes
+      %p
+        =link_to "Create an episode", new_show_episode_path(@show) if current_user.admin?
       - if !@episodes.nil? && @episodes.count > 0
-        - @episodes.each do |episode|
+        -@episodes.each do |episode|
           %p
             =link_to "\##{episode.full_title}", [@show, episode]
             -if !episode.live
