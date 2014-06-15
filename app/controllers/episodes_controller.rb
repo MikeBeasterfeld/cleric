@@ -10,8 +10,8 @@ class EpisodesController < ApplicationController
   # GET /episodes/1
   # GET /episodes/1.json
   def show
-  end
     @resource = [@show, @episode]
+  end
 
   # GET /episodes/new
   def new
@@ -26,11 +26,9 @@ class EpisodesController < ApplicationController
   # POST /episodes
   # POST /episodes.json
   def create
-    @episode = Episode.new(episode_params)
-
     respond_to do |format|
       if @episode.save
-        format.html { redirect_to @episode, notice: 'Episode was successfully created.' }
+        format.html { redirect_to [@show, @episode], notice: 'Episode was successfully created.' }
         format.json { render action: 'show', status: :created, location: @episode }
       else
         format.html { render action: 'new' }

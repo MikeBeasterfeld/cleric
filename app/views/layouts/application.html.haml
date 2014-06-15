@@ -27,9 +27,9 @@
                   %li
                     =link_to "Something", '#'
             %li
-              =link_to "New #{@resource.class}", new_polymorphic_url(@resource) if (can? :create, @resource) rescue ""
+              =link_to "New #{Array.wrap(@resource)[-1].class}", new_polymorphic_url(@resource) if (can? :create, @resource) rescue ""
             %li
-              =link_to "Edit this #{@resource.class}", edit_polymorphic_url(@resource) if (can? :edit, @resource) rescue ""
+              =link_to "Edit this #{Array.wrap(@resource)[-1].class}", edit_polymorphic_url(@resource) if (can? :edit, @resource) rescue ""
             %li
               =link_to "Sign out", destroy_user_session_path, :method => :delete if user_signed_in?
             %li
