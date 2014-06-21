@@ -15,9 +15,11 @@
         %p.lead 
           Guests for this episode were #{@episode.guests.map { |guest| link_to guest.name, user_path(guest) }.to_sentence}.
 
-      -if !@episode.media.empty?
+      -if @episode.media
         %p
           %audio{ :src => @episode.media, :controls => "controls", :type => "audio/mp3" }
+        %p
+          =link_to "MP3", @episode.media.to_s
 
       %p=@episode.description.html_safe
       %p=@episode.notes

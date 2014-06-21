@@ -28,6 +28,7 @@ class EpisodesController < ApplicationController
   def create
     respond_to do |format|
       if @episode.save
+        Rails.logger.debug('----Created Episode')
         format.html { redirect_to [@show, @episode], notice: 'Episode was successfully created.' }
         format.json { render action: 'show', status: :created, location: @episode }
       else

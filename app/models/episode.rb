@@ -5,6 +5,7 @@ class Episode < ActiveRecord::Base
   friendly_id :number_and_part, :use => [:slugged, :scoped], :scope => :show
 
   mount_uploader :uploaded_image, EpisodeiconUploader
+  mount_uploader :media, MediaUploader
 
 	has_many :episodehosts
 	has_many :hosts, :through => :episodehosts, :source => :user
@@ -13,6 +14,8 @@ class Episode < ActiveRecord::Base
 	has_many :guests, :through => :episodeguests, :source => :user
 
 	belongs_to :show
+
+  validates_presence_of :title, :slug
 
   scope :latest, -> { order(created_at: :desc).first }
 
