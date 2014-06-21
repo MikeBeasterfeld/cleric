@@ -65,6 +65,8 @@ Cleric::Application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
+  config.action_mailer.default_url_options = { :host => ENV["default_hostname"] }
+
   if ENV["mail_method"] == 'smtp'
     config.action_mailer.delivery_method = ENV["mail_method"].to_sym
     config.action_mailer.smtp_settings = {
