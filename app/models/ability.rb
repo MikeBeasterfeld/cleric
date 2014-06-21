@@ -16,7 +16,6 @@ class Ability
       Rails.logger.debug("--- abilities logged in user")
       can :read, Show
 
-      can :read, Episode, :live => true
       can :next, Episode, :preview => true
 
       can [:read, :edit], Episode, Episode.all do |episode|
@@ -24,7 +23,7 @@ class Ability
         Rails.logger.debug("--- abilities guests #{episode.guests}")
         Rails.logger.debug("--- abilities user #{user}")
 
-        episode.hosts.include?(user) || episode.guests.include?(user)
+        episode.hosts.include?(user) || episode.guests.include?(user) || episode.live || episode.preview
       end
 
       can :read, RssFeed
