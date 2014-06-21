@@ -8,10 +8,10 @@
         - @user.errors.full_messages.each do |msg|
           %li= msg
   =f.input :name
-  =f.input :slug
+  =f.input :slug, :label => 'Slug (will be auto-generated if blank)'
   =f.input :bio, :input_html => {:rows => 20, :cols => 150}, as: :bootsy
   =f.input :twitter
   =f.input :email
-  =f.input :admin if current_user.admin
+  =f.input :role, :collection => User.roles if current_user.admin?
   =f.button :submit
 

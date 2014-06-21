@@ -15,7 +15,7 @@ class Episode < ActiveRecord::Base
 
 	belongs_to :show
 
-  validates_presence_of :title, :slug
+  validates_presence_of :title, :slug, :number
 
   scope :latest, -> { order(created_at: :desc).first }
 

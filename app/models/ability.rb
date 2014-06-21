@@ -6,8 +6,31 @@ class Ability
     user ||= User.new # guest user (not logged in)
 
     if user.admin?
+      Rails.logger.debug("--- abilities logged in admin")
       can :manage, :all
+    elsif user.editor?
+      Rails.logger.debug("--- abilities logged in editor")
+      can :manage, :all
+      can :read, User
+    elsif user.id
+      Rails.logger.debug("--- abilities logged in user")
+      can :read, Show
+
+      can :read, Episode, :live => true
+      can :next, Episode, :preview => true
+
+      can [:read, :edit], Episode, Episode.all do |episode|
+        Rails.logger.debug("--- abilities hosts #{episode.hosts}")
+        Rails.logger.debug("--- abilities guests #{episode.guests}")
+        Rails.logger.debug("--- abilities user #{user}")
+
+        episode.hosts.include?(user) || episode.guests.include?(user)
+      end
+
+      can :read, RssFeed
     else
+      Rails.logger.debug("--- abilities not logged in")
+
       can :read, Show
 
       can :read, Episode, :live => true

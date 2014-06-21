@@ -9,7 +9,7 @@
   =f.input :subtitle
   =f.input :number
   =f.input :part
-  =f.input :slug
+  =f.input :slug, :label => 'Slug (will be auto-generated if not provided):'
   =f.input :description, :input_html => {:rows => 20, :cols => 150}, as: :bootsy
   =f.input :uploaded_image, as: :image_preview, input_html: {preview_version: :thumb}
   =f.input :notes

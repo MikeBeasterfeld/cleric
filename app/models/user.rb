@@ -17,7 +17,22 @@ class User < ActiveRecord::Base
   has_many :episodeguests
   has_many :guestepisodes, :through => :episodeguests, :source => :user
 
+  validates_presence_of :name, :slug, :email
+
   def admin?
-    self.admin
+    self.role == 'admin'
   end
+
+  def editor?
+    self.role == 'editor'
+  end
+
+  def show_bio?
+    self.roles.include? self.role
+  end
+
+  def self.roles
+    ['admin', 'editor', 'bio-only']
+  end
+
 end
