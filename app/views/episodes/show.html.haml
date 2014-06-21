@@ -6,14 +6,14 @@
     .content-block{ :style => 'padding-left: 20px; padding-top: 5px' }
       %h2{ :style => 'margin-top: 30px' }="\##{@episode.full_title}"
 
-      %p.lead This episode hosted by #{@episode.hosts.map { |host| link_to host.name, user_path(host) }.to_sentence}.
+      %p.lead This episode hosted by #{@episode.hosts.map { |host| link_to host.name, user_path(host) }.to_sentence.html_safe}.
 
       -if @episode.guests.count == 1
         %p.lead
-          Guest for this episode was #{@episode.guests.map { |guest| link_to guest.name, user_path(guest) }.to_sentence}.
+          Guest for this episode was #{@episode.guests.map { |guest| link_to guest.name, user_path(guest) }.to_sentence.html_safe}.
       -elsif @episode.guests.count > 1
         %p.lead 
-          Guests for this episode were #{@episode.guests.map { |guest| link_to guest.name, user_path(guest) }.to_sentence}.
+          Guests for this episode were #{@episode.guests.map { |guest| link_to guest.name, user_path(guest) }.to_sentence.html_safe}.
 
       -if @episode.media
         %p
