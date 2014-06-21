@@ -6,7 +6,7 @@
     .content-block
       .h3 Episodes
       %p
-        =link_to "Create an episode", new_show_episode_path(@show) if current_user.admin?
+        =link_to "Create an episode", new_show_episode_path(@show) if current_user.try('admin?')
       - if !@episodes.nil? && @episodes.count > 0
         -@episodes.each do |episode|
           %p
