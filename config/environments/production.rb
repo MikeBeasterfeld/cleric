@@ -65,6 +65,19 @@ Cleric::Application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
+  if ENV["mail_method"] == 'smtp'
+    config.action_mailer.delivery_method = ENV["mail_method"].to_sym
+    config.action_mailer.smtp_setting = {
+      address:        ENV["smtp_address"],
+      port:           ENV["smtp_port"],
+      domain:         ENV["smtp_domain"],
+      user_name:      ENV["smtp_username"],
+      password:       ENV["smtp_password"],
+      authentication: ENV["smtp_authentication"],
+      enable_startttls_auto: true
+    }
+  end
+
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found).
   config.i18n.fallbacks = true
