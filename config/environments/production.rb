@@ -67,7 +67,7 @@ Cleric::Application.configure do
 
   if ENV["mail_method"] == 'smtp'
     config.action_mailer.delivery_method = ENV["mail_method"].to_sym
-    config.action_mailer.smtp_setting = {
+    config.action_mailer.smtp_settings = {
       address:        ENV["smtp_address"],
       port:           ENV["smtp_port"],
       domain:         ENV["smtp_domain"],
