@@ -4,19 +4,15 @@ Cleric::Application.routes.draw do
 
   devise_for :users
 
-  resources :users do
-    collection do
-      post 'create_user', to: 'users#create'
-    end
-  end
-
-  resources :shows do
-    get :next
-  	resources :episodes
-  end
+  resources :users, :path => '/people'
 
   resources :rss_feeds
 
-
   root to: 'static_pages#index'
+
+  resources :shows, :path => ''
+  resources :shows, :path => '', :only => [] do
+    resources :episodes, :path => '', :except => [:index]
+  end
+
 end
