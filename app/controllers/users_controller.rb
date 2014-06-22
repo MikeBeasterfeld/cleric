@@ -4,14 +4,15 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @new_object_path = new_user_path
-    @users = User.all
+    @resource = @user
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
-    @edit_object_path = edit_user_path(@user)
+    @resource = @user
+    @hosted_episodes = @user.hostepisodes.accessible_by(current_ability)
+    @guest_episodes = @user.guestepisodes.accessible_by(current_ability)
   end
 
   # GET /users/new

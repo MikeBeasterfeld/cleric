@@ -12,6 +12,7 @@ class Ability
       Rails.logger.debug("--- abilities logged in editor")
       can :manage, :all
       can :read, User
+      can [:edit, :update], User, :id => user.id
     elsif user.id
       Rails.logger.debug("--- abilities logged in user")
       can :read, Show
@@ -27,6 +28,9 @@ class Ability
       end
 
       can :read, RssFeed
+      can :read, User
+      can [:edit, :update], User, :id => user.id
+
     else
       Rails.logger.debug("--- abilities not logged in")
 

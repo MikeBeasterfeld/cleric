@@ -12,10 +12,10 @@ class User < ActiveRecord::Base
 	has_many :shows, :through => :showhosts
 
 	has_many :episodehosts
-	has_many :hostepisodes, :through => :episodehosts, :source => :user
+	has_many :hostepisodes, :through => :episodehosts, :source => :episode
 
   has_many :episodeguests
-  has_many :guestepisodes, :through => :episodeguests, :source => :user
+  has_many :guestepisodes, :through => :episodeguests, :source => :episode
 
   validates_presence_of :name, :slug, :email
 

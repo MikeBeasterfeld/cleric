@@ -31,7 +31,6 @@ class ShowsController < ApplicationController
   def show
     @resource = @show
     @episodes = @show.episodes.accessible_by(current_ability)
-    @episodes = @episodes.where(:live => true) if !current_user.try('admin?')
   end
 
   # GET /shows/new
