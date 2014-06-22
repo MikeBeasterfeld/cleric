@@ -18,11 +18,17 @@
         -@hosted_episodes.each do |episode|
           %li
             =link_to "#{episode.show.name} #{episode.full_title}", [episode.show, episode]
+            -if !episode.live
+              %span.label.label-danger Not Live
+            -if episode.preview && !episode.live
+              %span.label.label-warning Preview
     -if @guest_episodes.length > 0
       %h3 Guest episodes
       %ul
         -@guest_episodes.each do |episode|
           %li
             =link_to "#{episode.show.name} #{episode.full_title}", [episode.show, episode]
-
-
+            -if !episode.live
+              %span.label.label-danger Not Live
+            -if episode.preview && !episode.live
+              %span.label.label-warning Preview
