@@ -18,7 +18,7 @@ class Ability
 
       can :next, Episode, :preview => true
 
-      can [:read, :edit], Episode, Episode.all do |episode|
+      can [:read, :edit, :update], Episode, Episode.all do |episode|
         Rails.logger.debug("--- abilities hosts #{episode.hosts}")
         Rails.logger.debug("--- abilities guests #{episode.guests}")
         Rails.logger.debug("--- abilities user #{user}")
