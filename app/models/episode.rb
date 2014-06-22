@@ -38,4 +38,12 @@ class Episode < ActiveRecord::Base
 		return full_title
 	end
 
+  def live?
+    self.live == "true"
+  end
+
+  def preview?
+    self.preview == "true"
+  end
+
 end

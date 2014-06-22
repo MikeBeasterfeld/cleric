@@ -13,9 +13,9 @@
         -@episodes.each do |episode|
           %p
             =link_to "\##{episode.full_title}", [@show, episode]
-            -if !episode.live
+            -if !episode.live?
               %span.label.label-danger Not Live
-            -if episode.preview && !episode.live
+            -if episode.preview? && !episode.live?
               %span.label.label-warning Preview
       -else
         %p No episodes have been added yet.
