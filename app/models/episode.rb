@@ -22,7 +22,7 @@ class Episode < ActiveRecord::Base
   after_initialize :set_defaults
 
   def set_defaults
-    self.published_on ||= Date.now
+    self.published_on ||= Date.current
   end
 
   def number_and_part
