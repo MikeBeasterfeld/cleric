@@ -15,8 +15,6 @@ class ShowsController < ApplicationController
 
     @episode = @show.latest
 
-    puts @episode
-
     if @episode.empty?
       redirect_to @show, :alert => 'No episodes found for this show'
     elsif @episode.live
@@ -30,7 +28,7 @@ class ShowsController < ApplicationController
   # GET /shows/1.json
   def show
     @resource = @show
-    @episodes = @show.episodes.accessible_by(current_ability)
+    @episodes = @show.episodes.order(published_on: :desc).accessible_by(current_ability)
   end
 
   # GET /shows/new
