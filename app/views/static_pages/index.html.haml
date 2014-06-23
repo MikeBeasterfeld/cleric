@@ -13,9 +13,8 @@
     .content-block{ :style => 'padding-top: 5px' }
       %h4.text-center
         Recent Episodes
-      - if @episodes
-        -while !@episodes.empty?
-          -episode = @episodes.pop
+      - if !@episodes.empty?
+        -@episodes.each do |episode|
           .row{ :style => 'padding-bottom: 15px' }
             .col-md-4
               =link_to image_tag(episode.show.image, :width => 80, :height => 80, :class => 'img-rounded'), [episode.show, episode]
