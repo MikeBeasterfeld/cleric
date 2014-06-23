@@ -19,6 +19,12 @@ class Episode < ActiveRecord::Base
 
   scope :latest, -> { order(created_at: :desc).first }
 
+  after_initialize :set_defaults
+
+  def set_defaults
+    self.published_on ||= Date.now
+  end
+
   def number_and_part
     return "#{number}.#{part}" if !part.nil?
     number
@@ -37,6 +43,10 @@ class Episode < ActiveRecord::Base
 
 		return full_title
 	end
+
+  def full_title_with_show
+    "#{self.show.name} #{self.full_title}"
+  end
 
   def live?
     self.live == "true"

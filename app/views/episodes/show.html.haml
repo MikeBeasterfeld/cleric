@@ -15,7 +15,11 @@
 .row
   .col-md-12
     .content-block{ :style => 'padding-left: 20px; padding-top: 5px' }
-      %h2{ :style => 'margin-top: 30px' }="\##{@episode.full_title}"
+      %h2{ :style => 'margin-top: 30px' }="\##{@episode.full_title_with_show}"
+
+      %h3
+        ="Published on:"
+        =@episode.published_on.strftime("%B %d, %Y") rescue ""
 
       %p.lead This episode hosted by #{@episode.hosts.map { |host| link_to host.name, user_path(host) }.to_sentence.html_safe}.
 

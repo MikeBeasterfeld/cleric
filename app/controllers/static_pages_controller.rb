@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
   load_and_authorize_resource :episode, :parent => false
 
 	def index
-    @episodes = @episodes.where(:live => true) if !current_user.try('admin?')
+    @episodes = @episodes.order(published_on: :desc).limit(7) if !@episodes.empty?
 	end
 
 end

@@ -4,8 +4,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = @users.order_by(name: :asc)
-    @resource = @user
+    @users = @users.order(name: :asc)
   end
 
   # GET /users/1
