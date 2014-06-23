@@ -40,6 +40,7 @@ class Ability
       can :next, Episode, :preview => true
 
       can :read, RssFeed
+      can :read, User
     end
 
     #

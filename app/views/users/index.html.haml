@@ -1,29 +1,12 @@
-%h1 Listing users
+%h1 Jackals
 
-%p=link_to 'Invite a new user', new_user_invitation_path
+%p=link_to 'Invite a new user', new_user_invitation_path if current_user.try('admin?')
 
-%table.table
-  %thead
-    %tr
-      %th Name
-      %th Slug
-      %th Email
-      %th Bio
-      %th Twitter
-      %th Role
-      %th
-      %th
-      %th
-  %tbody
-    -@users.each do |user|
-      %tr
-        %td=user.name
-        %td=user.slug
-        %td=user.email
-        %td=user.bio
-        %td=user.twitter
-        %td=user.role
-        %td=link_to 'Show', user
-        %td=link_to 'Edit', edit_user_path(user)
-        %td=link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }
+.row
+-@users.each do |user|
+  .col-md-3
+    .center-block.text-center{ :style => 'padding-bottom: 30px'}
+      =link_to image_tag('missing_image.png', :width => 130, :height => 130, :class => 'img-rounded'), [user]
+      %br
+      %small=link_to user.name, [user]
 
