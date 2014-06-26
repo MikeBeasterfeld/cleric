@@ -4,7 +4,7 @@
 	%itunes:subtitle=episode.subtitle
 	%description=episode.description
 	%itunes:summary=episode.description
-	%enclosure{ :url => episode.media, :length => 100, :type => 'audio/x-m4a' }
+	%enclosure{ :url => episode.media, :length => 100, :type => 'audio/mpeg' }
 	%content:encoded=episode.notes
 	%link=show_episode_url(episode.show, episode)
 	%guid=show_episode_url(episode.show, episode)

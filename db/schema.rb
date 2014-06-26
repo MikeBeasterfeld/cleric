@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140623054946) do
+ActiveRecord::Schema.define(version: 20140626125852) do
 
   create_table "bootsy_image_galleries", force: true do |t|
     t.integer  "bootsy_resource_id"
@@ -64,6 +64,9 @@ ActiveRecord::Schema.define(version: 20140623054946) do
     t.boolean  "live",           default: false
     t.boolean  "preview",        default: false
     t.date     "published_on"
+    t.string   "content_type"
+    t.integer  "file_size"
+    t.integer  "audio_time"
   end
 
   add_index "episodes", ["published_on"], name: "index_episodes_on_published_on"
