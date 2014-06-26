@@ -1,5 +1,5 @@
 require 'carrierwave/processing/mime_types'
-require 'taglib'
+require 'mp3info'
 
 class MediaUploader < CarrierWave::Uploader::Base
   include CarrierWave::MimeTypes
@@ -10,10 +10,8 @@ class MediaUploader < CarrierWave::Uploader::Base
   def save_content_type_and_size_in_model
     model.content_type = file.content_type if file.content_type
     model.file_size = file.size
-    puts file.inspect
-    TagLib::FileRef.open(file.file) do |fileref|
-      puts fileref.inspect
-      model.audio_time = fileref.audio_properties.length
+    Mp3Info.open(file.file) do |mp3info|
+      model.audio_time = mp3info.length.to_i
     end
   end
 

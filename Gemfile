@@ -73,4 +73,4 @@ gem 'quiet_assets'
 
 gem 'carrierwave-ftp', :require => 'carrierwave/storage/ftp'
 
-gem 'taglib-ruby'
+gem 'ruby-mp3info'
