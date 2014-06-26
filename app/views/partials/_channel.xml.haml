@@ -13,9 +13,9 @@
 		%itunes:owner
 			%itunes:name=channel.owner.name
 			%itunes:email=channel.owner.email
-		%itunes:image{ :href => request.protocol + request.host_with_port + channel.uploaded_image.url }
+		%itunes:image{ :href => channel.uploaded_image.url }
 		%itunes:category{ :text => channel.itunescategory.category }
 			-if !channel.itunescategory.subcategory.nil?
 				%itunes:category{ :text => channel.itunescategory.subcategory }
-			- @episodes.each do | episode |
+			- @episodes.where(:live => true).each do | episode |
 				=render 'partials/episode', :episode => episode

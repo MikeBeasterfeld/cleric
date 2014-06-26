@@ -4,8 +4,6 @@
 	%itunes:subtitle=episode.subtitle
 	%description=episode.description
 	%itunes:summary=episode.description
-	-if episode.uploaded_image.present?
-		%itunes:image{ :href => request.protocol + request.host_with_port + episode.uploaded_image.url }
 	%enclosure{ :url => episode.media, :length => 100, :type => 'audio/x-m4a' }
 	%content:encoded=episode.notes
 	%link=show_episode_url(episode.show, episode)
