@@ -12,7 +12,7 @@
       - if !@episodes.nil? && @episodes.count > 0
         -@episodes.each do |episode|
           %p
-            =link_to "\##{episode.full_title_with_show}", [@show, episode]
+            =link_to "#{episode.full_title_with_show}", [@show, episode]
             -if !episode.live?
               %span.label.label-danger Not Live
             -if episode.preview? && !episode.live?

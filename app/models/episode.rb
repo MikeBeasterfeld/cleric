@@ -45,7 +45,7 @@ class Episode < ActiveRecord::Base
 	end
 
   def full_title_with_show
-    "#{self.show.name} #{self.full_title}"
+    "#{self.show.name} \##{self.full_title}"
   end
 
   def live?
