@@ -4,9 +4,10 @@
 	%itunes:subtitle=episode.subtitle
 	%description=episode.description
 	%itunes:summary=episode.description
-	%enclosure{ :url => episode.media, :length => 100, :type => 'audio/mpeg' }
+	%enclosure{ :url => episode.media, :length => episode.audio_time, :type => episode.web_content_type }
 	%content:encoded=episode.notes
 	%link=show_episode_url(episode.show, episode)
 	%guid=show_episode_url(episode.show, episode)
 	%pubdate=episode.created_at
-	%itunes:duration 8:00
+	%itunes:duration=episode.friendly_length
+	%itunes:image{ :href => episode.show.uploaded_image.url }

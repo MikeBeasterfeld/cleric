@@ -3,7 +3,7 @@
 	%channel
 		%title=channel.name
 		%link=polymorphic_url channel
-		%pubdate=channel.episodes.first.updated_at
+		%pubdate=DateTime.parse(channel.episodes.where(:live => true).order(published_on: :desc).first.published_on.to_s).httpdate
 		%language=channel.language
 		%copyright=channel.copyright
 		%itunes:subtitle=channel.name
@@ -17,5 +17,5 @@
 		%itunes:category{ :text => channel.itunescategory.category }
 			-if !channel.itunescategory.subcategory.nil?
 				%itunes:category{ :text => channel.itunescategory.subcategory }
-			- @episodes.where(:live => true).each do | episode |
-				=render 'partials/episode', :episode => episode
+		- @episodes.where(:live => true).each do | episode |
+			=render 'partials/episode', :episode => episode

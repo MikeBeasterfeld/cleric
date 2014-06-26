@@ -49,11 +49,24 @@ class Episode < ActiveRecord::Base
   end
 
   def live?
-    self.live == "true"
+    self.live
   end
 
   def preview?
-    self.preview == "true"
+    self.preview
   end
 
+  def web_content_type
+    return 'audio/mpeg' if 'audio/mp3' == self.content_type
+  end
+
+  def friendly_length
+    seconds = self.audio_time
+    time_str = ''
+    if seconds / 3600 > 0
+      time_str << "#{seconds / 3600}:"
+      seconds = seconds % 3600
+    end
+    time_str + "#{seconds / 60}:#{seconds % 60}"
+  end
 end

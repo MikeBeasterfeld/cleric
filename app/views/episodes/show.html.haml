@@ -4,11 +4,11 @@
 -if !@episode.live?
   .row
     .col-md-12
-      .alert.alert-danger Show is not yet live
--if @episode.preview? && !episode.live?
+      .alert.alert-danger Episode is not yet live
+-if @episode.preview? && !@episode.live?
   .row
     .col-md-12
-      .alert.alert-danger Show is in preview mode
+      .alert.alert-danger Episode is in preview mode
 
 =render 'partials/show_block'
   
@@ -35,6 +35,7 @@
           %audio{ :src => @episode.media, :controls => "controls", :type => "audio/mp3" }
         %p
           =link_to "MP3", @episode.media.to_s
+          ="(#{(@episode.file_size.to_f/1024/1024).round(1)} MB)"
 
       %p=@episode.description.html_safe
       %p=@episode.notes
