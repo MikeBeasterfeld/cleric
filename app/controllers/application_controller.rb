@@ -2,6 +2,11 @@ class ApplicationController < ActionController::Base
   check_authorization :unless => :devise_controller?
   protect_from_forgery with: :exception
   before_filter :subdomain_view_path
+  before_filter :google_analytics
+
+  def google_analytics
+    @google_analytics_code = ENV['google_analytics_code']
+  end
   
   def subdomain_view_path
     prepend_view_path "app/views/#{ENV['SITENAME']}" if ENV['SITENAME'].present?
