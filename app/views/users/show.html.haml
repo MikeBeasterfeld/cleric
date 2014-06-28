@@ -6,7 +6,10 @@
 -else
   .jumbotron
     .row
-      .col-md-12
+      .col-md-2.center
+        =image_tag(@user.user_icon, :width => 130, :height => 130, :class => 'img-rounded')
+
+      .col-md-10
         %h2=@user.name
 
         %p.lead=@user.bio
