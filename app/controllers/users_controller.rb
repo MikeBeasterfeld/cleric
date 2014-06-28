@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = @users.order(name: :asc)
+    @users = @users.where(:hide_on_bio_page => false).order(name: :asc)
   end
 
   # GET /users/1
@@ -68,7 +68,7 @@ class UsersController < ApplicationController
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      permitted = [:username, :name, :bio, :twitter, :password, :password_confirmation, :email]
+      permitted = [:username, :name, :bio, :twitter, :password, :password_confirmation, :email, :show_titter, :show_email, :avatar, :hide_on_bio_page]
       permitted << :role if current_user.admin?
       params.require(:user).permit(permitted)
     end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140626125852) do
+ActiveRecord::Schema.define(version: 20140628063653) do
 
   create_table "bootsy_image_galleries", force: true do |t|
     t.integer  "bootsy_resource_id"
@@ -180,6 +180,10 @@ ActiveRecord::Schema.define(version: 20140626125852) do
     t.string   "invited_by_type"
     t.integer  "invitations_count",      default: 0
     t.string   "role"
+    t.boolean  "show_twitter"
+    t.boolean  "show_email"
+    t.string   "avatar"
+    t.boolean  "hide_on_bio_page"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

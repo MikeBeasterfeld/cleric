@@ -13,5 +13,9 @@
   =f.input :twitter
   =f.input :email
   =f.input :role, :collection => User.roles if current_user.admin?
+  =f.input :show_twitter
+  =f.input :show_email
+  =f.input :avatar
+  =f.input :hide_on_bio_page
   =f.button :submit
 

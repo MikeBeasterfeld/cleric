@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   include Bootsy::Container
   friendly_id :name, :use => :slugged
 
+  mount_uploader :avatar, AvatarUploader
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, 
@@ -19,6 +21,19 @@ class User < ActiveRecord::Base
 
   validates_presence_of :name, :slug, :email
 
+  after_initialize :set_defaults
+
+  def set_defaults
+    self.show_twitter = true if self.show_twitter.nil?
+    self.show_email = false if self.show_email.nil?
+    self.hide_on_bio_page = false if self.hide_on_bio_page.nil?
+  end
+
+  def user_icon
+    return self.avatar if self.avatar.file
+    return 'missing_image.png'
+  end
+
   def admin?
     self.role == 'admin'
   end
@@ -28,7 +43,7 @@ class User < ActiveRecord::Base
   end
 
   def show_bio?
-    self.roles.include? self.role
+    self.roles.include? self.role && !self.hide_on_bio_page
   end
 
   def self.roles
