@@ -5,7 +5,7 @@
 	%description=episode.description
 	%itunes:summary=episode.description
 	%enclosure{ :url => episode.media, :length => episode.file_size, :type => episode.web_content_type }
-	%content:encoded=episode.notes
+	%content:encoded="<p>#{episode.description}</p><p>#{episode.notes}</p>"
 	%link=show_episode_url(episode.show, episode)
 	%guid=show_episode_url(episode.show, episode)
 	%pubdate=(episode.published_on.to_time + 13.hours).utc

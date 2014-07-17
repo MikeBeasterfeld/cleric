@@ -38,4 +38,4 @@
           ="(#{(@episode.file_size.to_f/1024/1024).round(1)} MB)"
 
       %p=@episode.description.html_safe
-      %p=@episode.notes
+      %p=@episode.notes.html_safe
