@@ -3,7 +3,7 @@
 	%channel
 		%title=channel.name
 		%link=polymorphic_url channel
-		%pubdate=DateTime.parse(channel.episodes.where(:live => true).order(published_on: :desc).first.published_on.to_s).httpdate
+		%pubdate=(channel.episodes.where(:live => true).order(published_on: :desc).first.published_on + 8.hours).httpdate
 		%language=channel.language
 		%copyright=channel.copyright
 		%itunes:subtitle=channel.name
