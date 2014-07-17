@@ -8,6 +8,6 @@
 	%content:encoded=episode.notes
 	%link=show_episode_url(episode.show, episode)
 	%guid=show_episode_url(episode.show, episode)
-	%pubdate=episode.created_at
+	%pubdate=(episode.published_on.to_time + 13.hours).utc
 	%itunes:duration=episode.friendly_length
 	%itunes:image{ :href => episode.show.uploaded_image.url }
