@@ -74,3 +74,5 @@ gem 'quiet_assets'
 gem 'carrierwave-ftp', :require => 'carrierwave/storage/ftp'
 
 gem 'ruby-mp3info'
+
+gem 'unicorn'
