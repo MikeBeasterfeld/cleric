@@ -1,0 +1,21 @@
+%h1 Listing user_templates
+
+%table.table
+  %tr
+    %th Name
+    %th Area
+    %th
+    %th
+    %th
+
+  - @user_templates.each do |user_template|
+    %tr
+      %td= user_template.name
+      %td= user_template.area
+      %td= link_to 'Show', user_template
+      %td= link_to 'Edit', edit_user_template_path(user_template)
+      %td= link_to 'Destroy', user_template, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New User template', new_user_template_path

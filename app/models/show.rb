@@ -47,4 +47,10 @@ class Show < ActiveRecord::Base
     self.episodes.latest
   end
 
+  def self.sample
+    show = Show.new(id: 1, name: 'Test Show Name', description: 'Test show sample description', slug: 'example-slug')
+    show.hosts << User.sample
+    show
+  end
+
 end
