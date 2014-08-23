@@ -24,9 +24,9 @@ class User < ActiveRecord::Base
   after_initialize :set_defaults
 
   def set_defaults
-    self.show_twitter = true if self.show_twitter.nil?
-    self.show_email = false if self.show_email.nil?
-    self.hide_on_bio_page = false if self.hide_on_bio_page.nil?
+    self.show_twitter = true if self.respond_to? :show_twitter && self.show_twitter.nil?
+    self.show_email = false if self.respond_to? :show_email && self.show_email.nil?
+    self.hide_on_bio_page = false if self.respond_to? :hide_on_bio_page && self.hide_on_bio_page.nil?
   end
 
   def user_icon
