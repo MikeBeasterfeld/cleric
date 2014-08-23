@@ -1,5 +1,12 @@
 Cleric::Application.routes.draw do
 
+  resources :user_templates do
+    collection do
+      post 'preview'
+      get 'preview'
+    end
+  end
+
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
 
   devise_for :users

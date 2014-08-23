@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140628063653) do
+ActiveRecord::Schema.define(version: 20140816114849) do
 
   create_table "bootsy_image_galleries", force: true do |t|
     t.integer  "bootsy_resource_id"
@@ -91,6 +91,16 @@ ActiveRecord::Schema.define(version: 20140628063653) do
     t.datetime "updated_at"
   end
 
+  create_table "liquid_templates", force: true do |t|
+    t.string   "scope"
+    t.text     "code"
+    t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.boolean  "active"
+  end
+
   create_table "rss_feed_shows", force: true do |t|
     t.integer  "show_id"
     t.integer  "rss_feed_id"
@@ -150,6 +160,21 @@ ActiveRecord::Schema.define(version: 20140628063653) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "templates", force: true do |t|
+    t.string   "area"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_templates", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "area"
+    t.text     "content"
+    t.string   "name"
   end
 
   create_table "users", force: true do |t|

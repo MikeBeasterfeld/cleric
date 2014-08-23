@@ -50,4 +50,8 @@ class User < ActiveRecord::Base
     ['admin', 'editor', 'bio-only']
   end
 
+  def self.sample
+    User.new(id: 1, name: "User Name", slug: 'user-name-slug')
+  end
+
 end

@@ -1,0 +1,16 @@
+%p#notice= notice
+
+.row
+  .col-md-1
+    %strong Name
+  .col-md-11=@user_template.name
+
+.row
+  .col-md-1
+    %strong Area
+  .col-md-11=@user_template.area
+
+
+=link_to 'Edit', edit_user_template_path(@user_template)
+\|
+=link_to 'Back', user_templates_path
