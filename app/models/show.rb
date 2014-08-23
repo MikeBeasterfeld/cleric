@@ -49,7 +49,22 @@ class Show < ActiveRecord::Base
 
   def self.sample
     show = Show.new(id: 1, name: 'Test Show Name', description: 'Test show sample description', slug: 'example-slug')
+
+    def show.teach_method(name, &block)
+      (class << self; self; end).class_eval do
+        define_method name, &block
+      end
+    end
+
+    show.instance_variable_set(:@test_show, show)
+
+    show.teach_method(:image) do 
+      'missing_image.png'
+    end
+
     show.hosts << User.sample
+
+
     show
   end
 

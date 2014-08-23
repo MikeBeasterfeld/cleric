@@ -15,12 +15,15 @@ class UserTemplatesController < ApplicationController
   def preview
     area = params[:area] || @user_template.area
     @template_content = params[:template_content] || 'No content'
-    if area == 'show'
+    case area
+    when 'show'
       @show = Show.sample
-    end
-    if area == 'home'
+    when 'home'
       @shows = Show.all
       @recent_episodes = Episode.order(published_on: :desc)
+    when 'episode'
+      @episode = Episode.sample
+      @show = @episode.show
     end
 
     if true

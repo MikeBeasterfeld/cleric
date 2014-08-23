@@ -69,4 +69,25 @@ class Episode < ActiveRecord::Base
     end
     time_str + "#{seconds / 60}:#{seconds % 60}"
   end
+
+  def self.sample
+    show = Show.sample
+    episode = Episode.new(description: "Show description", notes: "Show notes", number: 1, title: "Show Title")
+
+    episode.instance_variable_set(:@test_show, show)
+    episode.instance_variable_set(:@test_hosts, [User.sample, User.sample, User.sample])
+    episode.instance_variable_set(:@test_guests, [User.sample])
+
+    def episode.teach_method(name, &block)
+      (class << self; self; end).class_eval do
+        define_method name, &block
+      end
+    end
+
+    episode.teach_method(:show) do @test_show end
+    episode.teach_method(:hosts) do @test_hosts end
+    episode.teach_method(:guests) do @test_guests end
+
+    episode
+  end
 end
