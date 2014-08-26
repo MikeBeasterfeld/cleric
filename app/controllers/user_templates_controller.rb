@@ -30,7 +30,12 @@ class UserTemplatesController < ApplicationController
       begin
         render 
       rescue Exception => e
-        render json: {:error => e.message }
+        if e.is_a?(::SyntaxError)
+          render json: { :error => e.message, :line =>  (exception.message.scan(/:(\d+)/).first || ["??"]).first }
+        else
+          line = (e.backtrace[0].scan(/:(\d+)/).first || ["??"]).first
+          render json: { :error => "Line #{line}: #{e.message}", :line => line }
+        end
       end
     end
   end

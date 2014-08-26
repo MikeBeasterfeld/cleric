@@ -1,5 +1,7 @@
 Cleric::Application.routes.draw do
 
+  resources :stylesheets
+
   resources :user_templates do
     collection do
       post 'preview'

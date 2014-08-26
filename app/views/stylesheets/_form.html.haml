@@ -1,12 +1,14 @@
-=simple_form_for(@user_template) do |f|
+=simple_form_for(@stylesheet) do |f|
   =f.error_notification
 
   .form-inputs
     .row
-      .col-md-3
+      .col-md-5
         =f.input :name
-        =f.input :area, :collection => UserTemplate.areas
-    .row#templatecontentrow
+        =f.input :controller, :collection => Stylesheet.controllers
+        =f.input :action
+        =f.input :active
+    .row#stylesheetcontentrow
       .col-md-12
         =f.input :content
     .row
@@ -14,19 +16,10 @@
         ="Content"
       .col-md-11
         #editor{:style => 'width: 100%; height: 300px'}
-        #status
-          #statusBar
-          #statusmessage No errors
+        #statusBar
 
   .form-actions
     .row{:style => 'padding-top: 15px'}
       .col-md-12
         =f.button :submit
-
-.row
-  .col-md-12
-    %h3 Preview
-.row
-  .col-md-12
-    #content_preview
 

@@ -14,4 +14,11 @@ module ApplicationHelper
   def get_and_render_template(obj, template)
     return render_template(obj, get_template(template))
   end
+
+  def database_css(controller, action)
+    stylesheet = Stylesheet.find_template(controller, action)
+    if stylesheet
+      stylesheet_link_tag stylesheet_path(stylesheet, format: :css), media: "all"
+    end
+  end
 end

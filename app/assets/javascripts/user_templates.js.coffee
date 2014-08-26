@@ -3,13 +3,18 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 //= require ace/ace
+//= require ace/ext-statusbar
 
 $ ->
-  if ( $('#contentrow').length )
-    $('#contentrow').hide()
+  if ( $('#templatecontentrow').length )
+    $('#templatecontentrow').hide()
 
     editor = ace.edit("editor")
+    StatusBar = ace.require("ace/ext/statusbar").StatusBar
+    statusBar = new StatusBar(editor, document.getElementById("statusBar"))
+
     editor.getSession().setMode("ace/mode/haml")
+    editor.getSession().setTabSize(2)
 
     editor.getSession().setValue($('#user_template_content').val())
 
@@ -17,19 +22,23 @@ $ ->
       $('#user_template_content').val(editor.getSession().getValue())
 
   setInterval () ->
-    console.log('tick')
-
-    content = editor.getSession().getValue()
+    session = editor.getSession()
+    content = session.getValue()
     area = $("#user_template_area").val()
     $.post(
       '/user_templates/preview.json',
       { 'area': area, 'template_content': content }, 
       (data) -> 
-        $("#content_errors").html("No errors in content")
-        $("#content_errors").html(data.error)
-        $("#content_preview").html(data.content)
+        session.clearBreakpoints()
 
-        console.log(data)
+        if data.error
+          $("#statusmessage").html(data.error)
+          session.setBreakpoint((data.line - 1), 'ace_error')
+          session.setAnnotation((data.line - 1), data.error)
+        else
+          $("#content_preview").html(data.content)
+          $("#statusmessage").html("No errors")
+
     )
 
   , 2000
