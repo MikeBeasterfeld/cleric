@@ -18,7 +18,7 @@ class UserTemplatesController < ApplicationController
     case area
     when 'show'
       @show = Show.sample
-      @episodes = [Episode.sample, Episode.sample(title: 'Title 2', number: 2), Episode.sample(title: 'Title 3', number: 3)]
+      @episodes = [Episode.sample, Episode.sample(title: 'Title 2', number: 2), Episode.sample(title: 'Title 3', number: 3, audio_time: 4000)]
     when 'home'
       @shows = Show.all
       @recent_episodes = Episode.order(published_on: :desc)

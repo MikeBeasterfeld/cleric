@@ -61,13 +61,17 @@ class Episode < ActiveRecord::Base
   end
 
   def friendly_length
+    return '00:00' if self.audio_time.blank?
     seconds = self.audio_time
     time_str = ''
     if seconds / 3600 > 0
       time_str << "#{seconds / 3600}:"
       seconds = seconds % 3600
+      time_str << "#{(seconds / 60).to_s.rjust(2, '0')}"
+    else 
+      time_str << "#{seconds / 60}"  
     end
-    time_str + "#{seconds / 60}:#{(seconds % 60).to_s.rjust(2, '0')}"
+    time_str + ":#{(seconds % 60).to_s.rjust(2, '0')}"
   end
 
   def self.sample(options = {})
