@@ -67,7 +67,7 @@ class Episode < ActiveRecord::Base
       time_str << "#{seconds / 3600}:"
       seconds = seconds % 3600
     end
-    time_str + "#{seconds / 60}:#{seconds % 60}"
+    time_str + "#{seconds / 60}:#{(seconds % 60).to_s.rjust(2, '0')}"
   end
 
   def self.sample(options = {})
