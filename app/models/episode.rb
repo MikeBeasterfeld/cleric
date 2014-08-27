@@ -70,9 +70,13 @@ class Episode < ActiveRecord::Base
     time_str + "#{seconds / 60}:#{seconds % 60}"
   end
 
-  def self.sample
+  def self.sample(options = {})
+    default_hash = {description: "Show description", notes: "Show notes", number: 1, title: "Show Title", published_on: Date.today}
+
+    default_hash.merge! options
+
     show = Show.sample
-    episode = Episode.new(description: "Show description", notes: "Show notes", number: 1, title: "Show Title")
+    episode = Episode.new(default_hash)
 
     episode.instance_variable_set(:@test_show, show)
     episode.instance_variable_set(:@test_hosts, [User.sample, User.sample, User.sample])

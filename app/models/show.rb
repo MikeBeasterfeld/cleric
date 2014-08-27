@@ -47,8 +47,12 @@ class Show < ActiveRecord::Base
     self.episodes.latest
   end
 
-  def self.sample
-    show = Show.new(id: 1, name: 'Test Show Name', description: 'Test show sample description', slug: 'example-slug')
+  def self.sample(options = {})
+    default_hash = {id: 1, name: 'Test Show Name', description: 'Test show sample descriptioon', slug: 'example-slug'}
+
+    default_hash.merge! options
+
+    show = Show.new(default_hash)
 
     def show.teach_method(name, &block)
       (class << self; self; end).class_eval do
@@ -60,6 +64,10 @@ class Show < ActiveRecord::Base
 
     show.teach_method(:image) do 
       'missing_image.png'
+    end
+
+    show.teach_method(:episodes) do 
+      [Episode.sample, Episode.sample, Episode.sample]
     end
 
     show.hosts << User.sample
