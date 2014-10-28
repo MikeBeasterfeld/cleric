@@ -1,6 +1,8 @@
 Cleric::Application.routes.draw do
 
-  resources :stylesheets
+  resources :blogs, :path => '/blog'
+
+  resources :bootstrapsettings
 
   resources :user_templates do
     collection do

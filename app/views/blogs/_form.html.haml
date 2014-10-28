@@ -1,0 +1,12 @@
+= simple_form_for(@blog) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :title
+    = f.input :body, :input_html => {:rows => 5, :cols => 130}, as: :bootsy
+    = f.input :published_on
+    = f.input :slug
+    = f.association :postauthor
+
+  .form-actions
+    = f.button :submit

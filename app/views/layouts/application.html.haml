@@ -7,7 +7,6 @@
     %meta{ :name => 'viewport', :content => 'width=device-width, initial-scale=1' }
     %title=ENV['site_title'] || Cleric
     =stylesheet_link_tag "application", media: "all"
-    =database_css(controller_name, action_name)
     =javascript_include_tag "application", controller_name
     =csrf_meta_tags
   %body
@@ -34,8 +33,6 @@
                         =link_to "Users", users_path
                       %li
                         =link_to "Templates", user_templates_path
-                      %li
-                        =link_to "CSS", stylesheets_path
               %li
                 =link_to "New #{Array.wrap(@resource)[-1].class}", new_polymorphic_url(@resource) if (can? :create, @resource) rescue ""
               %li

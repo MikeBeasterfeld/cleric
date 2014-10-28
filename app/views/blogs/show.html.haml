@@ -1,0 +1,17 @@
+-begin
+  =get_and_render_template(self, 'blogindex')
+-rescue
+  / Using system template
+  .row
+    .col-md-2
+    .col-md-8
+      .panel.panel-default
+        .panel-heading
+          %h3{:style => "margin-top: 10px"}=@blog.title
+          by
+          =@blog.postauthor.name
+          %br
+          published
+          =@blog.published_on.strftime("%B %d, %Y") rescue ""
+        .panel-body=@blog.body.html_safe
+    .col-md-2
