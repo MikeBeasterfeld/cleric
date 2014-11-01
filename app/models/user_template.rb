@@ -8,7 +8,8 @@ class UserTemplate < ActiveRecord::Base
       'people',
       'show',
       'episode',
-      'blog'
+      'blogindex',
+      'blogentry'
     ]
   end
 end

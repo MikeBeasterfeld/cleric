@@ -5,7 +5,7 @@
   .row
     .col-md-2
     .col-md-8
-      -if @blogs
+      -if !@blogs.nil?
         -@blogs.each do |post|
           .panel.panel-default
             .panel-heading
