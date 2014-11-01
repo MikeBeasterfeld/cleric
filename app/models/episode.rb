@@ -75,7 +75,7 @@ class Episode < ActiveRecord::Base
   end
 
   def self.sample(options = {})
-    default_hash = {description: "Show description", notes: "Show notes", number: 1, title: "Show Title", published_on: Date.today, audio_time: 600}
+    default_hash = {description: "Show description", notes: "Show notes", number: 1, title: "Show Title", published_on: Date.today, audio_time: 600, explicit: true}
 
     default_hash.merge! options
 

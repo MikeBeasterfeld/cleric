@@ -11,3 +11,4 @@
 	%pubDate=(episode.published_on + 8.hours).httpdate
 	%itunes:duration=episode.friendly_length
 	%itunes:image{ :href => episode.show.uploaded_image.url }
+	%itunes:explicit=episode.explicit ? 'yes' : 'no'

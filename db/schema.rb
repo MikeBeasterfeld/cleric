@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141028172016) do
+ActiveRecord::Schema.define(version: 20141101195031) do
 
   create_table "blogs", force: true do |t|
     t.string   "title"
@@ -403,7 +403,6 @@ ActiveRecord::Schema.define(version: 20141028172016) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
->>>>>>> Stashed changes
 
   create_table "bootsy_image_galleries", force: true do |t|
     t.integer  "bootsy_resource_id"
@@ -459,6 +458,7 @@ ActiveRecord::Schema.define(version: 20141028172016) do
     t.string   "content_type"
     t.integer  "file_size"
     t.integer  "audio_time"
+    t.boolean  "explicit",       default: false
   end
 
   add_index "episodes", ["published_on"], name: "index_episodes_on_published_on"
@@ -562,6 +562,7 @@ ActiveRecord::Schema.define(version: 20141028172016) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "content"
+    t.string   "slug"
   end
 
   create_table "templates", force: true do |t|
