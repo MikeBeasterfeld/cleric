@@ -22,8 +22,13 @@ Cleric::Application.routes.draw do
   root to: 'static_pages#index'
 
   resources :shows, :path => ''
+
   resources :shows, :path => '', :only => [] do
-    resources :episodes, :path => '', :except => [:index]
+    resources :episodes, :path => '', :except => [:index] do
+      member do
+        get 'audio'
+      end
+    end
   end
 
 end

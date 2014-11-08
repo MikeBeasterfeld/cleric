@@ -23,6 +23,11 @@ class EpisodesController < ApplicationController
     @resource = [@show, @episode]
   end
 
+  def audio
+    @episode.increment!(:downloads)
+    redirect_to @episode.media.to_s, status: 302
+  end
+
   # POST /episodes
   # POST /episodes.json
   def create

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141101195031) do
+ActiveRecord::Schema.define(version: 20141108111659) do
 
   create_table "blogs", force: true do |t|
     t.string   "title"
@@ -459,6 +459,7 @@ ActiveRecord::Schema.define(version: 20141101195031) do
     t.integer  "file_size"
     t.integer  "audio_time"
     t.boolean  "explicit",       default: false
+    t.integer  "downloads",      default: 0
   end
 
   add_index "episodes", ["published_on"], name: "index_episodes_on_published_on"

@@ -12,7 +12,7 @@
               %h3{:style => "margin-top: 10px"}
                 =link_to post.title, post
               by
-              =post.postauthor.name
+              =post.postauthor.name rescue ''
               %br
               published
               =post.published_on.strftime("%B %d, %Y") rescue ""

@@ -42,6 +42,9 @@ class Ability
       can :read, Episode, :live => true
       can :next, Episode, :preview => true
 
+      can [:audio], Episode, :live => true
+
+
       can :read, RssFeed
       can :read, User
 
