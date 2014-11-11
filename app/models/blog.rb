@@ -7,4 +7,6 @@ class Blog < ActiveRecord::Base
 
   belongs_to :postauthor, :class_name => User, :foreign_key => :author
 
+  validates_presence_of :slug
+
 end
