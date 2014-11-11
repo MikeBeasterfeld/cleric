@@ -49,7 +49,7 @@ class Ability
       can :read, User
 
       can :read, Blog do |blog|
-        blog.published_on >= Date.today
+        blog.published_on <= Date.today
       end
     end
 
