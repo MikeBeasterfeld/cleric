@@ -31,8 +31,8 @@ class Ability
       can :read, User
       can [:edit, :update], User, :id => user.id
 
-      can :read, Blog do |blog|
-        blog.published_on >= Date.today
+      can :read, Blog, ["published_on <= ?", Date.today] do |blog|
+        blog.published_on <= Date.today
       end
     else
       Rails.logger.debug("--- abilities not logged in")
@@ -48,7 +48,7 @@ class Ability
       can :read, RssFeed
       can :read, User
 
-      can :read, Blog do |blog|
+      can :read, Blog, ["published_on <= ?", Date.today] do |blog|
         blog.published_on <= Date.today
       end
     end
