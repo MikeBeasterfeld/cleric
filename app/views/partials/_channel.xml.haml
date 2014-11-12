@@ -17,5 +17,5 @@
 		%itunes:category{ :text => channel.itunescategory.category }
 			-if !channel.itunescategory.subcategory.nil?
 				%itunes:category{ :text => channel.itunescategory.subcategory }
-		- @episodes.where(:live => true).each do | episode |
+		- @episodes.where(:live => true).order(published_on: :desc).each do | episode |
 			=render 'partials/episode', :episode => episode
