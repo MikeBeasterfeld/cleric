@@ -3,6 +3,7 @@ class BlogsController < ApplicationController
 
   def index
     @resource = Blog.new
+    @blogs = @blogs.order(published_on: :desc) if !@blogs.nil?
   end
 
   def show
