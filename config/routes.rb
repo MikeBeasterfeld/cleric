@@ -17,7 +17,7 @@ Cleric::Application.routes.draw do
 
   resources :users, :path => '/people'
 
-  resources :rss_feeds
+  resources :rss_feeds, :path => '/rss'
 
   root to: 'static_pages#index'
 
