@@ -17,7 +17,7 @@ class Episode < ActiveRecord::Base
 
   validates_presence_of :title, :slug, :number
 
-  scope :latest, -> { order(created_at: :desc).first }
+  scope :latest, -> { order(published_on: :desc).first }
 
   after_initialize :set_defaults
 
