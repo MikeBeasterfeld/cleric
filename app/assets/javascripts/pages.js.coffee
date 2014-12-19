@@ -16,7 +16,7 @@ $ ->
     editor.getSession().setMode("ace/mode/haml")
     editor.getSession().setTabSize(2)
 
-    editor.getSession().setValue($('#user_page_content').val())
+    editor.getSession().setValue($('#page_content').val())
 
     $("form").first().submit ->
       $('#page_content').val(editor.getSession().getValue())
