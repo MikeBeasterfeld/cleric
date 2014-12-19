@@ -1,5 +1,7 @@
 Cleric::Application.routes.draw do
 
+  resources :pages
+
   resources :blogs, :path => '/blog'
 
   resources :bootstrapsettings

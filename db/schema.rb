@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141108111659) do
+ActiveRecord::Schema.define(version: 20141219131749) do
 
   create_table "blogs", force: true do |t|
     t.string   "title"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 20141108111659) do
     t.datetime "updated_at"
     t.string   "slug"
   end
+
+  add_index "blogs", ["slug"], name: "index_blogs_on_slug", unique: true
 
   create_table "bootstrapsettings", force: true do |t|
     t.string   "gray_darker",                                 default: "lighten(#000, 13.5%)"
@@ -493,6 +495,16 @@ ActiveRecord::Schema.define(version: 20141108111659) do
     t.string   "name"
     t.boolean  "active"
   end
+
+  create_table "pages", force: true do |t|
+    t.string   "slug"
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pages", ["slug"], name: "index_pages_on_slug", unique: true
 
   create_table "rss_feed_shows", force: true do |t|
     t.integer  "show_id"

@@ -16,6 +16,7 @@ class Ability
     elsif user.id
       Rails.logger.debug("--- abilities logged in user")
       can :read, Show
+      can :read, Page
 
       can :next, Episode, :preview => true
 
@@ -38,6 +39,7 @@ class Ability
       Rails.logger.debug("--- abilities not logged in")
 
       can :read, Show
+      can :read, Page
 
       can :read, Episode, :live => true
       can :next, Episode, :preview => true

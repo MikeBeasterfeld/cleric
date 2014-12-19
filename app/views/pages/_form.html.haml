@@ -1,0 +1,25 @@
+=simple_form_for(@page) do |f|
+  =f.error_notification
+
+  .form-inputs
+    .row
+      .col-md-6
+        =f.input :slug
+        =f.input :title
+    .row#pagecontentrow
+      .col-md-12
+        =f.input :content
+    .row
+      .col-md-1
+        ="Content"
+      .col-md-11
+        #editor{:style => 'width: 100%; height: 300px'}
+        #status
+          #statusBar
+          #statusmessage No errors
+  .form-actions
+    .row{:style => 'padding-top: 15px'}
+      .col-md-12
+        =f.button :submit
+
+=debug(params)
