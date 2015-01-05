@@ -11,6 +11,7 @@ class EpisodesController < ApplicationController
   # GET /episodes/1.json
   def show
     @resource = [@show, @episode]
+    @page_title = "#{@show.name} ##{@episode.number} - #{@episode.title}"
   end
 
   # GET /episodes/new

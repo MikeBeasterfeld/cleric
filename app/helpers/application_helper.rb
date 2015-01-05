@@ -21,4 +21,11 @@ module ApplicationHelper
       stylesheet_link_tag stylesheet_path(stylesheet, format: :css), media: "all"
     end
   end
+
+  def get_page_title
+    return @page_title if !@page_title.nil?
+
+    ENV['site_title'] || 'Cleric'
+  end
+
 end

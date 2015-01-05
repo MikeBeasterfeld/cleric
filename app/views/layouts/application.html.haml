@@ -5,7 +5,7 @@
       /
         ="controller: #{controller_name}, action: #{action_name}"
     %meta{ :name => 'viewport', :content => 'width=device-width, initial-scale=1' }
-    %title=ENV['site_title'] || Cleric
+    %title=get_page_title
     =stylesheet_link_tag "application", media: "all"
     =javascript_include_tag "application", controller_name
     =csrf_meta_tags

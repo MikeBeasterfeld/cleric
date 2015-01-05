@@ -29,6 +29,7 @@ class ShowsController < ApplicationController
   def show
     @resource = @show
     @episodes = @show.episodes.order(published_on: :desc).accessible_by(current_ability)
+    @page_title = @show.name
   end
 
   # GET /shows/new
