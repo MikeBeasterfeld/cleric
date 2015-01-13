@@ -15,9 +15,14 @@ Cleric::Application.routes.draw do
 
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
 
-  devise_for :users
+  devise_for :users, :skip => [:registrations]                                          
 
-  resources :users, :path => '/people'
+  resources :users, :path => '/people' do
+    member do
+      get 'edit_password'
+      patch 'update_password'
+    end
+  end
 
   resources :rss_feeds, :path => '/rss'
 

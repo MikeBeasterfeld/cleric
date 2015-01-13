@@ -8,6 +8,7 @@ class Ability
     if user.admin?
       Rails.logger.debug("--- abilities logged in admin")
       can :manage, :all
+      can :update_password_for, User
     elsif user.editor?
       Rails.logger.debug("--- abilities logged in editor")
       can :manage, :all
@@ -35,6 +36,8 @@ class Ability
       can :read, Blog, ["published_on <= ?", Date.today] do |blog|
         blog.published_on <= Date.today
       end
+
+      can :update_password_for, User, :id => user.id
     else
       Rails.logger.debug("--- abilities not logged in")
 

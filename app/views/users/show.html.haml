@@ -1,4 +1,14 @@
 
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        -if can? :edit, @user
+          =link_to "Edit user", edit_user_path, :class => "btn btn-default"
+        -if can? :update_password_for, @user
+          =link_to "Update password", edit_password_user_path, :class => "btn btn-default"
+
+
 -if @user.hide_on_bio_page
   .row
     .col-md-12

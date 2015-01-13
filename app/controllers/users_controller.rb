@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    @hidden_users = @users.where(:hide_on_bio_page => true).order(name: :asc) if current_user.admin?
     @users = @users.where(:hide_on_bio_page => false).order(name: :asc)
   end
 
@@ -64,6 +65,30 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def edit_password
+    @user = User.find(current_user.id)
+    if can? :update_password_for, @user
+      render "edit_password"
+    else
+      redirect_to root_path
+    end
+  end  
+
+  def update_password
+    @user = User.find(current_user.id)
+    if can? :update_password_for, @user
+      if @user.update(user_params)
+        # Sign in the user by passing validation in case their password changed
+        sign_in @user, :bypass => true
+        redirect_to root_path
+      else
+        render "edit_password"
+      end
+    else
+      redirect_to root_path
+    end
+  end  
 
   private
     # Never trust parameters from the scary internet, only allow the white list through.
