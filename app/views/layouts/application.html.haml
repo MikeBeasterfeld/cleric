@@ -22,7 +22,6 @@
           .navbar-header
             =link_to "Home", root_url, :class => 'navbar-brand'
             =link_to "People", users_url, :class => 'navbar-brand'
-            =link_to "People", users_url, :class => 'navbar-brand'
           .collapse.navbar-collapse
             %ul.nav.navbar-nav.pull-right
               -if current_user.try('admin?')
