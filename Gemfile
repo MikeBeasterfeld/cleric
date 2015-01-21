@@ -76,3 +76,5 @@ gem 'carrierwave-ftp', :require => 'carrierwave/storage/ftp'
 gem 'ruby-mp3info'
 
 gem 'unicorn'
+
+gem 'sprockets_better_errors'
