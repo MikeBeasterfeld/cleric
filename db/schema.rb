@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141219131749) do
+ActiveRecord::Schema.define(version: 20150122034001) do
 
   create_table "blogs", force: true do |t|
     t.string   "title"
@@ -565,17 +565,6 @@ ActiveRecord::Schema.define(version: 20141219131749) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "stylesheets", force: true do |t|
-    t.string   "name"
-    t.string   "controller"
-    t.string   "action"
-    t.boolean  "active"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text     "content"
-    t.string   "slug"
   end
 
   create_table "templates", force: true do |t|
