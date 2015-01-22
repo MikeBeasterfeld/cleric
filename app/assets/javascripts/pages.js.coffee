@@ -9,6 +9,8 @@ $ ->
   if ( $('#pagecontentrow').length )
     $('#pagecontentrow').hide()
 
+    last_change = new Date().getTime()
+
     editor = ace.edit("editor")
     StatusBar = ace.require("ace/ext/statusbar").StatusBar
     statusBar = new StatusBar(editor, document.getElementById("statusBar"))
@@ -21,24 +23,32 @@ $ ->
     $("form").first().submit ->
       $('#page_content').val(editor.getSession().getValue())
 
-  # setInterval () ->
-  #   session = editor.getSession()
-  #   content = session.getValue()
-  #   area = $("#user_page_area").val()
-  #   $.post(
-  #     '/pages/preview.json',
-  #     { 'area': area, 'page_content': content }, 
-  #     (data) -> 
-  #       session.clearBreakpoints()
+    editor.on "change", ->
+      last_change = new Date().getTime()
 
-  #       if data.error
-  #         $("#statusmessage").html(data.error)
-  #         session.setBreakpoint((data.line - 1), 'ace_error')
-  #         session.setAnnotation((data.line - 1), data.error)
-  #       else
-  #         $("#content_preview").html(data.content)
-  #         $("#statusmessage").html("No errors")
+  setInterval () ->
+    current_time = new Date().getTime()
 
-  #   )
+    if last_change < (current_time - 2000) && last_change > (current_time - 4000)
+      last_change = last_change - 2000
+      console.log('updating')
+      session = editor.getSession()
+      content = session.getValue()
+      area = $("#user_page_area").val()
+      $.post(
+        '/pages/preview.json',
+        { 'area': area, 'page_content': content }, 
+        (data) -> 
+          session.clearBreakpoints()
 
-  # , 2000
+          if data.error
+            $("#statusmessage").html(data.error)
+            session.setBreakpoint((data.line - 1), 'ace_error')
+            session.setAnnotation((data.line - 1), data.error)
+          else
+            $("#content_preview").html(data.content)
+            $("#statusmessage").html("No errors")
+
+      )
+
+  , 1000

@@ -1,0 +1,17 @@
+%h1 Listing stylesheets
+
+%table
+  %tr
+    %th
+    %th
+    %th
+
+  - @stylesheets.each do |stylesheet|
+    %tr
+      %td= link_to 'Show', stylesheet
+      %td= link_to 'Edit', edit_stylesheet_path(stylesheet)
+      %td= link_to 'Destroy', stylesheet, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Stylesheet', new_stylesheet_path

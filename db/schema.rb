@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150122034001) do
+ActiveRecord::Schema.define(version: 20150122040248) do
 
   create_table "blogs", force: true do |t|
     t.string   "title"
@@ -563,6 +563,391 @@ ActiveRecord::Schema.define(version: 20150122034001) do
   create_table "shows_users", force: true do |t|
     t.integer  "show_id"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "stylesheets", force: true do |t|
+    t.string   "gray_base",                                   default: "#000",                                                                               null: false
+    t.string   "gray_darker",                                 default: "lighten($gray-base, 13.5%)",                                                         null: false
+    t.string   "gray_dark",                                   default: "lighten($gray-base, 20%)",                                                           null: false
+    t.string   "gray",                                        default: "lighten($gray_base, 33.5%)",                                                         null: false
+    t.string   "gray_light",                                  default: "lighten($gray-base, 46.7%)",                                                         null: false
+    t.string   "gray_lighter",                                default: "lighten($gray-base, 93.5%)",                                                         null: false
+    t.string   "brand_primary",                               default: "darken(#428bca, 6.5%)",                                                              null: false
+    t.string   "brand_success",                               default: "#5cb85c",                                                                            null: false
+    t.string   "brand_info",                                  default: "#5bc0de",                                                                            null: false
+    t.string   "brand_warning",                               default: "#f0ad4e",                                                                            null: false
+    t.string   "brand_danger",                                default: "#d9534f",                                                                            null: false
+    t.string   "body_bg",                                     default: "#fff",                                                                               null: false
+    t.string   "text_color",                                  default: "$gray-dark",                                                                         null: false
+    t.string   "link_color",                                  default: "$brand-primary",                                                                     null: false
+    t.string   "link_hover_color",                            default: "darken($link-color, 15%)",                                                           null: false
+    t.string   "link_hover_decoration",                       default: "underline",                                                                          null: false
+    t.string   "font_family_sans_serif",                      default: "\"Helvetica Neue\", Helvetica, Arial, sans-serif",                                   null: false
+    t.string   "font_family_serif",                           default: "Georgia, \"Times New Roman\", Times, serif",                                         null: false
+    t.string   "font_family_monospace",                       default: "Menlo, Monaco, Consolas, \"Courier New\", monospace",                                null: false
+    t.string   "font_family_base",                            default: "$font-family-sans-serif",                                                            null: false
+    t.string   "font_size_base",                              default: "14px",                                                                               null: false
+    t.string   "font_size_large",                             default: "ceil(($font-size-base * 1.25))",                                                     null: false
+    t.string   "font_size_small",                             default: "ceil(($font-size-base * 0.85))",                                                     null: false
+    t.string   "font_size_h1",                                default: "floor(($font-size-base * 2.6))",                                                     null: false
+    t.string   "font_size_h2",                                default: "floor(($font-size-base * 2.15))",                                                    null: false
+    t.string   "font_size_h3",                                default: "ceil(($font-size-base * 1.7))",                                                      null: false
+    t.string   "font_size_h4",                                default: "ceil(($font-size-base * 1.25))",                                                     null: false
+    t.string   "font_size_h5",                                default: "$font-size-base",                                                                    null: false
+    t.string   "font_size_h6",                                default: "ceil(($font-size-base * 0.85))",                                                     null: false
+    t.string   "line_height_base",                            default: "1.428571429",                                                                        null: false
+    t.string   "line_height_computed",                        default: "floor(($font-size-base * $line-height-base))",                                       null: false
+    t.string   "headings_font_family",                        default: "inherit",                                                                            null: false
+    t.string   "headings_font_weight",                        default: "500",                                                                                null: false
+    t.string   "headings_line_height",                        default: "1.1",                                                                                null: false
+    t.string   "headings_color",                              default: "inherit",                                                                            null: false
+    t.string   "icon_font_path",                              default: "if($bootstrap-sass-asset-helper, \"bootstrap/\", \"../fonts/bootstrap/\")",          null: false
+    t.string   "icon_font_name",                              default: "\"glyphicons-halflings-regular\"",                                                   null: false
+    t.string   "icon_font_svg_id",                            default: "\"glyphicons_halflingsregular\"",                                                    null: false
+    t.string   "padding_base_vertical",                       default: "6px",                                                                                null: false
+    t.string   "padding_base_horizontal",                     default: "12px",                                                                               null: false
+    t.string   "padding_large_vertical",                      default: "10px",                                                                               null: false
+    t.string   "padding_large_horizontal",                    default: "16px",                                                                               null: false
+    t.string   "padding_small_vertical",                      default: "5px",                                                                                null: false
+    t.string   "padding_small_horizontal",                    default: "10px",                                                                               null: false
+    t.string   "padding_xs_vertical",                         default: "1px",                                                                                null: false
+    t.string   "padding_xs_horizontal",                       default: "5px",                                                                                null: false
+    t.string   "line_height_large",                           default: "1.3333333",                                                                          null: false
+    t.string   "line_height_small",                           default: "1.5",                                                                                null: false
+    t.string   "border_radius_base",                          default: "4px",                                                                                null: false
+    t.string   "border_radius_large",                         default: "6px",                                                                                null: false
+    t.string   "border_radius_small",                         default: "3px",                                                                                null: false
+    t.string   "component_active_color",                      default: "#fff",                                                                               null: false
+    t.string   "component_active_bg",                         default: "$brand-primary",                                                                     null: false
+    t.string   "caret_width_base",                            default: "4px",                                                                                null: false
+    t.string   "caret_width_large",                           default: "5px",                                                                                null: false
+    t.string   "table_cell_padding",                          default: "8px",                                                                                null: false
+    t.string   "table_condensed_cell_padding",                default: "5px",                                                                                null: false
+    t.string   "table_bg",                                    default: "transparent",                                                                        null: false
+    t.string   "table_bg_accent",                             default: "#f9f9f9",                                                                            null: false
+    t.string   "table_bg_hover",                              default: "#f5f5f5",                                                                            null: false
+    t.string   "table_bg_active",                             default: "$table-bg-hover",                                                                    null: false
+    t.string   "table_border_color",                          default: "#ddd",                                                                               null: false
+    t.string   "btn_font_weight",                             default: "normal",                                                                             null: false
+    t.string   "btn_default_color",                           default: "#333",                                                                               null: false
+    t.string   "btn_default_bg",                              default: "#fff",                                                                               null: false
+    t.string   "btn_default_border",                          default: "#ccc",                                                                               null: false
+    t.string   "btn_primary_color",                           default: "#fff",                                                                               null: false
+    t.string   "btn_primary_bg",                              default: "$brand-primary",                                                                     null: false
+    t.string   "btn_primary_border",                          default: "darken($btn-primary-bg, 5%)",                                                        null: false
+    t.string   "btn_success_color",                           default: "#fff",                                                                               null: false
+    t.string   "btn_success_bg",                              default: "$brand-success",                                                                     null: false
+    t.string   "btn_success_border",                          default: "darken($btn-success-bg, 5%)",                                                        null: false
+    t.string   "btn_info_color",                              default: "#fff",                                                                               null: false
+    t.string   "btn_info_bg",                                 default: "$brand-info",                                                                        null: false
+    t.string   "btn_info_border",                             default: "darken($btn-info-bg, 5%)",                                                           null: false
+    t.string   "btn_warning_color",                           default: "#fff",                                                                               null: false
+    t.string   "btn_warning_bg",                              default: "$brand-warning",                                                                     null: false
+    t.string   "btn_warning_border",                          default: "darken($btn-warning-bg, 5%)",                                                        null: false
+    t.string   "btn_danger_color",                            default: "#fff",                                                                               null: false
+    t.string   "btn_danger_bg",                               default: "$brand-danger",                                                                      null: false
+    t.string   "btn_danger_border",                           default: "darken($btn-danger-bg, 5%)",                                                         null: false
+    t.string   "btn_link_disabled_color",                     default: "$gray-light",                                                                        null: false
+    t.string   "input_bg",                                    default: "#fff",                                                                               null: false
+    t.string   "input_bg_disabled",                           default: "$gray-lighter",                                                                      null: false
+    t.string   "input_color",                                 default: "$gray",                                                                              null: false
+    t.string   "input_border",                                default: "#ccc",                                                                               null: false
+    t.string   "input_border_radius",                         default: "$border-radius-base",                                                                null: false
+    t.string   "input_border_radius_large",                   default: "$border-radius-large",                                                               null: false
+    t.string   "input_border_radius_small",                   default: "$border-radius-small",                                                               null: false
+    t.string   "input_border_focus",                          default: "#66afe9",                                                                            null: false
+    t.string   "input_color_placeholder",                     default: "#999",                                                                               null: false
+    t.string   "input_height_base",                           default: "($line-height-computed + ($padding-base-vertical * 2) + 2)",                         null: false
+    t.string   "input_height_large",                          default: "(ceil($font-size-large * $line-height-large) + ($padding-large-vertical * 2) + 2)",  null: false
+    t.string   "input_height_small",                          default: "(floor($font-size-small * $line-height-small) + ($padding-small-vertical * 2) + 2)", null: false
+    t.string   "legend_color",                                default: "$gray-dark",                                                                         null: false
+    t.string   "legend_border_color",                         default: "#e5e5e5",                                                                            null: false
+    t.string   "input_group_addon_bg",                        default: "$gray-lighter",                                                                      null: false
+    t.string   "input_group_addon_border_color",              default: "$input-border",                                                                      null: false
+    t.string   "cursor_disabled",                             default: "not-allowed",                                                                        null: false
+    t.string   "dropdown_bg",                                 default: "#fff",                                                                               null: false
+    t.string   "dropdown_border",                             default: "rgba(0,0,0,.15)",                                                                    null: false
+    t.string   "dropdown_fallback_border",                    default: "#ccc",                                                                               null: false
+    t.string   "dropdown_divider_bg",                         default: "#e5e5e5",                                                                            null: false
+    t.string   "dropdown_link_color",                         default: "$gray-dark",                                                                         null: false
+    t.string   "dropdown_link_hover_color",                   default: "darken($gray-dark, 5%)",                                                             null: false
+    t.string   "dropdown_link_hover_bg",                      default: "#f5f5f5",                                                                            null: false
+    t.string   "dropdown_link_active_color",                  default: "$component-active-color",                                                            null: false
+    t.string   "dropdown_link_active_bg",                     default: "$component-active-bg",                                                               null: false
+    t.string   "dropdown_link_disabled_color",                default: "$gray-light",                                                                        null: false
+    t.string   "dropdown_header_color",                       default: "$gray-light",                                                                        null: false
+    t.string   "dropdown_caret_color",                        default: "#000",                                                                               null: false
+    t.string   "zindex_navbar",                               default: "1000",                                                                               null: false
+    t.string   "zindex_dropdown",                             default: "1000",                                                                               null: false
+    t.string   "zindex_popover",                              default: "1060",                                                                               null: false
+    t.string   "zindex_tooltip",                              default: "1070",                                                                               null: false
+    t.string   "zindex_navbar_fixed",                         default: "1030",                                                                               null: false
+    t.string   "zindex_modal",                                default: "1040",                                                                               null: false
+    t.string   "screen_xs",                                   default: "480px",                                                                              null: false
+    t.string   "screen_xs_min",                               default: "$screen-xs",                                                                         null: false
+    t.string   "screen_phone",                                default: "$screen-xs-min",                                                                     null: false
+    t.string   "screen_sm",                                   default: "768px",                                                                              null: false
+    t.string   "screen_sm_min",                               default: "$screen-sm",                                                                         null: false
+    t.string   "screen_tablet",                               default: "$screen-sm-min",                                                                     null: false
+    t.string   "screen_md",                                   default: "992px",                                                                              null: false
+    t.string   "screen_md_min",                               default: "$screen-md",                                                                         null: false
+    t.string   "screen_desktop",                              default: "$screen-md-min",                                                                     null: false
+    t.string   "screen_lg",                                   default: "1200px",                                                                             null: false
+    t.string   "screen_lg_min",                               default: "$screen-lg",                                                                         null: false
+    t.string   "screen_lg_desktop",                           default: "$screen-lg-min",                                                                     null: false
+    t.string   "screen_xs_max",                               default: "($screen-sm-min - 1)",                                                               null: false
+    t.string   "screen_sm_max",                               default: "($screen-md-min - 1)",                                                               null: false
+    t.string   "screen_md_max",                               default: "($screen-lg-min - 1)",                                                               null: false
+    t.string   "grid_columns",                                default: "12",                                                                                 null: false
+    t.string   "grid_gutter_width",                           default: "30px",                                                                               null: false
+    t.string   "grid_float_breakpoint",                       default: "$screen-sm-min",                                                                     null: false
+    t.string   "grid_float_breakpoint_max",                   default: "($grid-float-breakpoint - 1)",                                                       null: false
+    t.string   "container_tablet",                            default: "(720px + $grid-gutter-width)",                                                       null: false
+    t.string   "container_sm",                                default: "$container-tablet",                                                                  null: false
+    t.string   "container_desktop",                           default: "(940px + $grid-gutter-width)",                                                       null: false
+    t.string   "container_md",                                default: "$container-desktop",                                                                 null: false
+    t.string   "container_large_desktop",                     default: "(1140px + $grid-gutter-width)",                                                      null: false
+    t.string   "container_lg",                                default: "$container-large-desktop",                                                           null: false
+    t.string   "navbar_height",                               default: "50px",                                                                               null: false
+    t.string   "navbar_margin_bottom",                        default: "$line-height-computed",                                                              null: false
+    t.string   "navbar_border_radius",                        default: "$border-radius-base",                                                                null: false
+    t.string   "navbar_padding_horizontal",                   default: "floor(($grid-gutter-width / 2))",                                                    null: false
+    t.string   "navbar_padding_vertical",                     default: "(($navbar-height - $line-height-computed) / 2)",                                     null: false
+    t.string   "navbar_collapse_max_height",                  default: "340px",                                                                              null: false
+    t.string   "navbar_default_color",                        default: "#777",                                                                               null: false
+    t.string   "navbar_default_bg",                           default: "#f8f8f8",                                                                            null: false
+    t.string   "navbar_default_border",                       default: "darken($navbar-default-bg, 6.5%)",                                                   null: false
+    t.string   "navbar_default_link_color",                   default: "#777",                                                                               null: false
+    t.string   "navbar_default_link_hover_color",             default: "#333",                                                                               null: false
+    t.string   "navbar_default_link_hover_bg",                default: "transparent",                                                                        null: false
+    t.string   "navbar_default_link_active_color",            default: "#555",                                                                               null: false
+    t.string   "navbar_default_link_active_bg",               default: "darken($navbar-default-bg, 6.5%)",                                                   null: false
+    t.string   "navbar_default_link_disabled_color",          default: "#ccc",                                                                               null: false
+    t.string   "navbar_default_link_disabled_bg",             default: "transparent",                                                                        null: false
+    t.string   "navbar_default_brand_color",                  default: "$navbar-default-link-color",                                                         null: false
+    t.string   "navbar_default_brand_hover_color",            default: "darken($navbar-default-brand-color, 10%)",                                           null: false
+    t.string   "navbar_default_brand_hover_bg",               default: "transparent",                                                                        null: false
+    t.string   "navbar_default_toggle_hover_bg",              default: "#ddd",                                                                               null: false
+    t.string   "navbar_default_toggle_icon_bar_bg",           default: "#888",                                                                               null: false
+    t.string   "navbar_default_toggle_border_color",          default: "#ddd",                                                                               null: false
+    t.string   "navbar_inverse_color",                        default: "lighten($gray-light, 15%)",                                                          null: false
+    t.string   "navbar_inverse_bg",                           default: "#222",                                                                               null: false
+    t.string   "navbar_inverse_border",                       default: "darken($navbar-inverse-bg, 10%)",                                                    null: false
+    t.string   "navbar_inverse_link_color",                   default: "lighten($gray-light, 15%)",                                                          null: false
+    t.string   "navbar_inverse_link_hover_color",             default: "#fff",                                                                               null: false
+    t.string   "navbar_inverse_link_hover_bg",                default: "transparent",                                                                        null: false
+    t.string   "navbar_inverse_link_active_color",            default: "$navbar-inverse-link-hover-color",                                                   null: false
+    t.string   "navbar_inverse_link_active_bg",               default: "darken($navbar-inverse-bg, 10%)",                                                    null: false
+    t.string   "navbar_inverse_link_disabled_color",          default: "#444",                                                                               null: false
+    t.string   "navbar_inverse_link_disabled_bg",             default: "transparent",                                                                        null: false
+    t.string   "navbar_inverse_brand_color",                  default: "$navbar-inverse-link-color",                                                         null: false
+    t.string   "navbar_inverse_brand_hover_color",            default: "#fff",                                                                               null: false
+    t.string   "navbar_inverse_brand_hover_bg",               default: "transparent",                                                                        null: false
+    t.string   "navbar_inverse_toggle_hover_bg",              default: "#333",                                                                               null: false
+    t.string   "navbar_inverse_toggle_icon_bar_bg",           default: "#fff",                                                                               null: false
+    t.string   "navbar_inverse_toggle_border_color",          default: "#333",                                                                               null: false
+    t.string   "nav_link_padding",                            default: "10px 15px",                                                                          null: false
+    t.string   "nav_link_hover_bg",                           default: "$gray-lighter",                                                                      null: false
+    t.string   "nav_disabled_link_color",                     default: "$gray-light",                                                                        null: false
+    t.string   "nav_disabled_link_hover_color",               default: "$gray-light",                                                                        null: false
+    t.string   "nav_tabs_border_color",                       default: "#ddd",                                                                               null: false
+    t.string   "nav_tabs_link_hover_border_color",            default: "$gray-lighter",                                                                      null: false
+    t.string   "nav_tabs_active_link_hover_bg",               default: "$body-bg",                                                                           null: false
+    t.string   "nav_tabs_active_link_hover_color",            default: "$gray",                                                                              null: false
+    t.string   "nav_tabs_active_link_hover_border_color",     default: "#ddd",                                                                               null: false
+    t.string   "nav_tabs_justified_link_border_color",        default: "#ddd",                                                                               null: false
+    t.string   "nav_tabs_justified_active_link_border_color", default: "$body-bg",                                                                           null: false
+    t.string   "nav_pills_border_radius",                     default: "$border-radius-base",                                                                null: false
+    t.string   "nav_pills_active_link_hover_bg",              default: "$component-active-bg",                                                               null: false
+    t.string   "nav_pills_active_link_hover_color",           default: "$component-active-color",                                                            null: false
+    t.string   "pagination_color",                            default: "$link-color",                                                                        null: false
+    t.string   "pagination_bg",                               default: "#fff",                                                                               null: false
+    t.string   "pagination_border",                           default: "#ddd",                                                                               null: false
+    t.string   "pagination_hover_color",                      default: "$link-hover-color",                                                                  null: false
+    t.string   "pagination_hover_bg",                         default: "$gray-lighter",                                                                      null: false
+    t.string   "pagination_hover_border",                     default: "#ddd",                                                                               null: false
+    t.string   "pagination_active_color",                     default: "#fff",                                                                               null: false
+    t.string   "pagination_active_bg",                        default: "$brand-primary",                                                                     null: false
+    t.string   "pagination_active_border",                    default: "$brand-primary",                                                                     null: false
+    t.string   "pagination_disabled_color",                   default: "$gray-light",                                                                        null: false
+    t.string   "pagination_disabled_bg",                      default: "#fff",                                                                               null: false
+    t.string   "pagination_disabled_border",                  default: "#ddd",                                                                               null: false
+    t.string   "pager_bg",                                    default: "$pagination-bg",                                                                     null: false
+    t.string   "pager_border",                                default: "$pagination-border",                                                                 null: false
+    t.string   "pager_border_radius",                         default: "15px",                                                                               null: false
+    t.string   "pager_hover_bg",                              default: "$pagination-hover-bg",                                                               null: false
+    t.string   "pager_active_bg",                             default: "$pagination-active-bg",                                                              null: false
+    t.string   "pager_active_color",                          default: "$pagination-active-color",                                                           null: false
+    t.string   "pager_disabled_color",                        default: "$pagination-disabled-color",                                                         null: false
+    t.string   "jumbotron_padding",                           default: "30px",                                                                               null: false
+    t.string   "jumbotron_color",                             default: "inherit",                                                                            null: false
+    t.string   "jumbotron_bg",                                default: "$gray-lighter",                                                                      null: false
+    t.string   "jumbotron_heading_color",                     default: "inherit",                                                                            null: false
+    t.string   "jumbotron_font_size",                         default: "ceil(($font-size-base * 1.5))",                                                      null: false
+    t.string   "state_success_text",                          default: "#3c763d",                                                                            null: false
+    t.string   "state_success_bg",                            default: "#dff0d8",                                                                            null: false
+    t.string   "state_success_border",                        default: "darken(adjust-hue($state-success-bg, -10), 5%)",                                     null: false
+    t.string   "state_info_text",                             default: "#31708f",                                                                            null: false
+    t.string   "state_info_bg",                               default: "#d9edf7",                                                                            null: false
+    t.string   "state_info_border",                           default: "darken(adjust-hue($state-info-bg, -10), 7%)",                                        null: false
+    t.string   "state_warning_text",                          default: "#8a6d3b",                                                                            null: false
+    t.string   "state_warning_bg",                            default: "#fcf8e3",                                                                            null: false
+    t.string   "state_warning_border",                        default: "darken(adjust-hue($state-warning-bg, -10), 5%)",                                     null: false
+    t.string   "state_danger_text",                           default: "#a94442",                                                                            null: false
+    t.string   "state_danger_bg",                             default: "#f2dede",                                                                            null: false
+    t.string   "state_danger_border",                         default: "darken(adjust-hue($state-danger-bg, -10), 5%)",                                      null: false
+    t.string   "tooltip_max_width",                           default: "200px",                                                                              null: false
+    t.string   "tooltip_color",                               default: "#fff",                                                                               null: false
+    t.string   "tooltip_bg",                                  default: "#000",                                                                               null: false
+    t.string   "tooltip_opacity",                             default: ".9",                                                                                 null: false
+    t.string   "tooltip_arrow_width",                         default: "5px",                                                                                null: false
+    t.string   "tooltip_arrow_color",                         default: "$tooltip-bg",                                                                        null: false
+    t.string   "popover_bg",                                  default: "#fff",                                                                               null: false
+    t.string   "popover_max_width",                           default: "276px",                                                                              null: false
+    t.string   "popover_border_color",                        default: "rgba(0,0,0,.2)",                                                                     null: false
+    t.string   "popover_fallback_border_color",               default: "#ccc",                                                                               null: false
+    t.string   "popover_title_bg",                            default: "darken($popover-bg, 3%)",                                                            null: false
+    t.string   "popover_arrow_width",                         default: "10px",                                                                               null: false
+    t.string   "popover_arrow_color",                         default: "$popover-bg",                                                                        null: false
+    t.string   "popover_arrow_outer_width",                   default: "($popover-arrow-width + 1)",                                                         null: false
+    t.string   "popover_arrow_outer_color",                   default: "fade_in($popover-border-color, 0.05)",                                               null: false
+    t.string   "popover_arrow_outer_fallback_color",          default: "darken($popover-fallback-border-color, 20%)",                                        null: false
+    t.string   "label_default_bg",                            default: "$gray-light",                                                                        null: false
+    t.string   "label_primary_bg",                            default: "$brand-primary",                                                                     null: false
+    t.string   "label_success_bg",                            default: "$brand-success",                                                                     null: false
+    t.string   "label_info_bg",                               default: "$brand-info",                                                                        null: false
+    t.string   "label_warning_bg",                            default: "$brand-warning",                                                                     null: false
+    t.string   "label_danger_bg",                             default: "$brand-danger",                                                                      null: false
+    t.string   "label_color",                                 default: "#fff",                                                                               null: false
+    t.string   "label_link_hover_color",                      default: "#fff",                                                                               null: false
+    t.string   "modal_inner_padding",                         default: "15px",                                                                               null: false
+    t.string   "modal_title_padding",                         default: "15px",                                                                               null: false
+    t.string   "modal_title_line_height",                     default: "$line-height-base",                                                                  null: false
+    t.string   "modal_content_bg",                            default: "#fff",                                                                               null: false
+    t.string   "modal_content_border_color",                  default: "rgba(0,0,0,.2)",                                                                     null: false
+    t.string   "modal_content_fallback_border_color",         default: "#999",                                                                               null: false
+    t.string   "modal_backdrop_bg",                           default: "#000",                                                                               null: false
+    t.string   "modal_backdrop_opacity",                      default: ".5",                                                                                 null: false
+    t.string   "modal_header_border_color",                   default: "#e5e5e5",                                                                            null: false
+    t.string   "modal_footer_border_color",                   default: "$modal-header-border-color",                                                         null: false
+    t.string   "modal_lg",                                    default: "900px",                                                                              null: false
+    t.string   "modal_md",                                    default: "600px",                                                                              null: false
+    t.string   "modal_sm",                                    default: "300px",                                                                              null: false
+    t.string   "alert_padding",                               default: "15px",                                                                               null: false
+    t.string   "alert_border_radius",                         default: "$border-radius-base",                                                                null: false
+    t.string   "alert_link_font_weight",                      default: "bold",                                                                               null: false
+    t.string   "alert_success_bg",                            default: "$state-success-bg",                                                                  null: false
+    t.string   "alert_success_text",                          default: "$state-success-text",                                                                null: false
+    t.string   "alert_success_border",                        default: "$state-success-border",                                                              null: false
+    t.string   "alert_info_bg",                               default: "$state-info-bg",                                                                     null: false
+    t.string   "alert_info_text",                             default: "$state-info-text",                                                                   null: false
+    t.string   "alert_info_border",                           default: "$state-info-border",                                                                 null: false
+    t.string   "alert_warning_bg",                            default: "$state-warning-bg",                                                                  null: false
+    t.string   "alert_warning_text",                          default: "$state-warning-text",                                                                null: false
+    t.string   "alert_warning_border",                        default: "$state-warning-border",                                                              null: false
+    t.string   "alert_danger_bg",                             default: "$state-danger-bg",                                                                   null: false
+    t.string   "alert_danger_text",                           default: "$state-danger-text",                                                                 null: false
+    t.string   "alert_danger_border",                         default: "$state-danger-border",                                                               null: false
+    t.string   "progress_bg",                                 default: "#f5f5f5",                                                                            null: false
+    t.string   "progress_bar_color",                          default: "#fff",                                                                               null: false
+    t.string   "progress_border_radius",                      default: "$border-radius-base",                                                                null: false
+    t.string   "progress_bar_bg",                             default: "$brand-primary",                                                                     null: false
+    t.string   "progress_bar_success_bg",                     default: "$brand-success",                                                                     null: false
+    t.string   "progress_bar_warning_bg",                     default: "$brand-warning",                                                                     null: false
+    t.string   "progress_bar_danger_bg",                      default: "$brand-danger",                                                                      null: false
+    t.string   "progress_bar_info_bg",                        default: "$brand-info",                                                                        null: false
+    t.string   "list_group_bg",                               default: "#fff",                                                                               null: false
+    t.string   "list_group_border",                           default: "#ddd",                                                                               null: false
+    t.string   "list_group_border_radius",                    default: "$border-radius-base",                                                                null: false
+    t.string   "list_group_hover_bg",                         default: "#f5f5f5",                                                                            null: false
+    t.string   "list_group_active_color",                     default: "$component-active-color",                                                            null: false
+    t.string   "list_group_active_bg",                        default: "$component-active-bg",                                                               null: false
+    t.string   "list_group_active_border",                    default: "$list-group-active-bg",                                                              null: false
+    t.string   "list_group_active_text_color",                default: "lighten($list-group-active-bg, 40%)",                                                null: false
+    t.string   "list_group_disabled_color",                   default: "$gray-light",                                                                        null: false
+    t.string   "list_group_disabled_bg",                      default: "$gray-lighter",                                                                      null: false
+    t.string   "list_group_disabled_text_color",              default: "$list-group-disabled-color",                                                         null: false
+    t.string   "list_group_link_color",                       default: "#555",                                                                               null: false
+    t.string   "list_group_link_hover_color",                 default: "$list-group-link-color",                                                             null: false
+    t.string   "list_group_link_heading_color",               default: "#333",                                                                               null: false
+    t.string   "panel_bg",                                    default: "#fff",                                                                               null: false
+    t.string   "panel_body_padding",                          default: "15px",                                                                               null: false
+    t.string   "panel_heading_padding",                       default: "10px 15px",                                                                          null: false
+    t.string   "panel_footer_padding",                        default: "$panel-heading-padding",                                                             null: false
+    t.string   "panel_border_radius",                         default: "$border-radius-base",                                                                null: false
+    t.string   "panel_inner_border",                          default: "#ddd",                                                                               null: false
+    t.string   "panel_footer_bg",                             default: "#f5f5f5",                                                                            null: false
+    t.string   "panel_default_text",                          default: "$gray-dark",                                                                         null: false
+    t.string   "panel_default_border",                        default: "#ddd",                                                                               null: false
+    t.string   "panel_default_heading_bg",                    default: "#f5f5f5",                                                                            null: false
+    t.string   "panel_primary_text",                          default: "#fff",                                                                               null: false
+    t.string   "panel_primary_border",                        default: "$brand-primary",                                                                     null: false
+    t.string   "panel_primary_heading_bg",                    default: "$brand-primary",                                                                     null: false
+    t.string   "panel_success_text",                          default: "$state-success-text",                                                                null: false
+    t.string   "panel_success_border",                        default: "$state-success-border",                                                              null: false
+    t.string   "panel_success_heading_bg",                    default: "$state-success-bg",                                                                  null: false
+    t.string   "panel_info_text",                             default: "$state-info-text",                                                                   null: false
+    t.string   "panel_info_border",                           default: "$state-info-border",                                                                 null: false
+    t.string   "panel_info_heading_bg",                       default: "$state-info-bg",                                                                     null: false
+    t.string   "panel_warning_text",                          default: "$state-warning-text",                                                                null: false
+    t.string   "panel_warning_border",                        default: "$state-warning-border",                                                              null: false
+    t.string   "panel_warning_heading_bg",                    default: "$state-warning-bg",                                                                  null: false
+    t.string   "panel_danger_text",                           default: "$state-danger-text",                                                                 null: false
+    t.string   "panel_danger_border",                         default: "$state-danger-border",                                                               null: false
+    t.string   "panel_danger_heading_bg",                     default: "$state-danger-bg",                                                                   null: false
+    t.string   "thumbnail_padding",                           default: "4px",                                                                                null: false
+    t.string   "thumbnail_bg",                                default: "$body-bg",                                                                           null: false
+    t.string   "thumbnail_border",                            default: "#ddd",                                                                               null: false
+    t.string   "thumbnail_border_radius",                     default: "$border-radius-base",                                                                null: false
+    t.string   "thumbnail_caption_color",                     default: "$text-color",                                                                        null: false
+    t.string   "thumbnail_caption_padding",                   default: "9px",                                                                                null: false
+    t.string   "well_bg",                                     default: "#f5f5f5",                                                                            null: false
+    t.string   "well_border",                                 default: "darken($well-bg, 7%)",                                                               null: false
+    t.string   "badge_color",                                 default: "#fff",                                                                               null: false
+    t.string   "badge_link_hover_color",                      default: "#fff",                                                                               null: false
+    t.string   "badge_bg",                                    default: "$gray-light",                                                                        null: false
+    t.string   "badge_active_color",                          default: "$link-color",                                                                        null: false
+    t.string   "badge_active_bg",                             default: "#fff",                                                                               null: false
+    t.string   "badge_font_weight",                           default: "bold",                                                                               null: false
+    t.string   "badge_line_height",                           default: "1",                                                                                  null: false
+    t.string   "badge_border_radius",                         default: "10px",                                                                               null: false
+    t.string   "breadcrumb_padding_vertical",                 default: "8px",                                                                                null: false
+    t.string   "breadcrumb_padding_horizontal",               default: "15px",                                                                               null: false
+    t.string   "breadcrumb_bg",                               default: "#f5f5f5",                                                                            null: false
+    t.string   "breadcrumb_color",                            default: "#ccc",                                                                               null: false
+    t.string   "breadcrumb_active_color",                     default: "$gray-light",                                                                        null: false
+    t.string   "breadcrumb_separator",                        default: "\"/\"",                                                                              null: false
+    t.string   "carousel_text_shadow",                        default: "0 1px 2px rgba(0,0,0,.6)",                                                           null: false
+    t.string   "carousel_control_color",                      default: "#fff",                                                                               null: false
+    t.string   "carousel_control_width",                      default: "15%",                                                                                null: false
+    t.string   "carousel_control_opacity",                    default: ".5",                                                                                 null: false
+    t.string   "carousel_control_font_size",                  default: "20px",                                                                               null: false
+    t.string   "carousel_indicator_active_bg",                default: "#fff",                                                                               null: false
+    t.string   "carousel_indicator_border_color",             default: "#fff",                                                                               null: false
+    t.string   "carousel_caption_color",                      default: "#fff",                                                                               null: false
+    t.string   "close_font_weight",                           default: "bold",                                                                               null: false
+    t.string   "close_color",                                 default: "#000",                                                                               null: false
+    t.string   "close_text_shadow",                           default: "0 1px 0 #fff",                                                                       null: false
+    t.string   "code_color",                                  default: "#c7254e",                                                                            null: false
+    t.string   "code_bg",                                     default: "#f9f2f4",                                                                            null: false
+    t.string   "kbd_color",                                   default: "#fff",                                                                               null: false
+    t.string   "kbd_bg",                                      default: "#333",                                                                               null: false
+    t.string   "pre_bg",                                      default: "#f5f5f5",                                                                            null: false
+    t.string   "pre_color",                                   default: "$gray-dark",                                                                         null: false
+    t.string   "pre_border_color",                            default: "#ccc",                                                                               null: false
+    t.string   "pre_scrollable_max_height",                   default: "340px",                                                                              null: false
+    t.string   "component_offset_horizontal",                 default: "180px",                                                                              null: false
+    t.string   "text_muted",                                  default: "$gray-light",                                                                        null: false
+    t.string   "abbr_border_color",                           default: "$gray-light",                                                                        null: false
+    t.string   "headings_small_color",                        default: "$gray-light",                                                                        null: false
+    t.string   "blockquote_small_color",                      default: "$gray-light",                                                                        null: false
+    t.string   "blockquote_font_size",                        default: "($font-size-base * 1.25)",                                                           null: false
+    t.string   "blockquote_border_color",                     default: "$gray-lighter",                                                                      null: false
+    t.string   "page_header_border_color",                    default: "$gray-lighter",                                                                      null: false
+    t.string   "dl_horizontal_offset",                        default: "$component-offset-horizontal",                                                       null: false
+    t.string   "hr_border",                                   default: "$gray-lighter",                                                                      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

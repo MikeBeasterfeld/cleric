@@ -4,9 +4,6 @@
  *= require bootsy
  */
 
-$body-bg: #ccc;
-$brand-info: #fff;
-
+@import "sass_variables";
 @import "bootstrap";
-
-.content-block{ background-color: #fff; padding-top: 10px; padding-left: 15px; padding-right: 10px; padding-bottom: 10px; border-radius: 5px }
+@import "custom_css";
