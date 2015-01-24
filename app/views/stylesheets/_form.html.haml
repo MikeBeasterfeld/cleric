@@ -1,7 +1,11 @@
 = simple_form_for(@stylesheet) do |f|
   = f.error_notification
 
-  .form-inputs
+  .form-actions
+    = f.button :submit
 
+  .form-inputs
+    -Stylesheet.variable_names.each do |name|
+      =f.input name
   .form-actions
     = f.button :submit

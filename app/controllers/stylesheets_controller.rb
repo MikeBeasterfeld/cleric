@@ -1,28 +1,27 @@
 class StylesheetsController < ApplicationController
-  before_action :set_stylesheet, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource :except => [:show]
 
-  # GET /stylesheets
-  # GET /stylesheets.json
   def index
-    @stylesheets = Stylesheet.all
+    redirect_to edit_stylesheet_path(@stylesheets.first)
   end
 
-  # GET /stylesheets/1
-  # GET /stylesheets/1.json
   def show
+    Rails.logger.debug('hello')
+    Rails.logger.debug(Rails.application.assets.find_asset("glyphicons-halflings-regular"))
+#    Rails.logger.debug(Rails.application.assets.instance_variable_get("@assets").inspect)
+#    Rails.logger.debug(Rails.application.assets.instance_variable_get("@digests").inspect)
+
+    @stylesheet = Stylesheet.find_by_fingerprint(params[:id])
+    authorize! :show, @stylesheet
+    render :text => @stylesheet.user_stylesheet.html_safe
   end
 
-  # GET /stylesheets/new
   def new
-    @stylesheet = Stylesheet.new
   end
 
-  # GET /stylesheets/1/edit
   def edit
   end
 
-  # POST /stylesheets
-  # POST /stylesheets.json
   def create
     @stylesheet = Stylesheet.new(stylesheet_params)
 
@@ -37,12 +36,10 @@ class StylesheetsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /stylesheets/1
-  # PATCH/PUT /stylesheets/1.json
   def update
     respond_to do |format|
       if @stylesheet.update(stylesheet_params)
-        format.html { redirect_to @stylesheet, notice: 'Stylesheet was successfully updated.' }
+        format.html { redirect_to edit_stylesheet_path(@stylesheet), notice: 'Stylesheet was successfully created.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -51,8 +48,6 @@ class StylesheetsController < ApplicationController
     end
   end
 
-  # DELETE /stylesheets/1
-  # DELETE /stylesheets/1.json
   def destroy
     @stylesheet.destroy
     respond_to do |format|
@@ -62,13 +57,8 @@ class StylesheetsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_stylesheet
-      @stylesheet = Stylesheet.find(params[:id])
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def stylesheet_params
-      params[:stylesheet]
+      params.require(:stylesheet).permit(Stylesheet.variable_names)
     end
 end

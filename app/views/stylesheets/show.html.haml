@@ -1,5 +1,21 @@
 %p#notice= notice
 
+%p
+  = link_to 'Edit', edit_stylesheet_path(@stylesheet)
+  \|
+  = link_to 'Back', stylesheets_path
+
+%table.table
+  %tr
+    %th
+      Variable
+    %th
+      Value
+  -Stylesheet.variable_names.each do |name|
+    %tr
+      %td=name
+      %td=@stylesheet.send("#{name}")
+
 
 = link_to 'Edit', edit_stylesheet_path(@stylesheet)
 \|
