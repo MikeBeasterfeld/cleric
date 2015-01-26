@@ -39,7 +39,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem 'bootstrap-sass', '~> 3.1.0'
+gem 'bootstrap-sass', '~> 3.2.0'
 gem 'haml-rails', '>= 0.5.3'
 
 gem 'devise'

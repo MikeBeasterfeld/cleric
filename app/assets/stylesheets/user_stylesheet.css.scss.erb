@@ -1,4 +1,6 @@
 
+$bootstrap-sass-asset-helper: false !default;
+
 $gray-base: <%= self.gray_base %>;
 $gray-darker: <%= self.gray_darker %>;
 $gray-dark: <%= self.gray_dark %>;
@@ -418,7 +420,7 @@ $headings-font-family: <%= self.headings_font_family %>;
 $headings-font-weight: <%= self.headings_font_weight %>;
 $headings-line-height: <%= self.headings_line_height %>;
 $headings-color: <%= self.headings_color %>;
-$icon-font-path: "../assets/bootstrap/" !default;
+$icon-font-path: if($bootstrap-sass-asset-helper, "bootstrap/", "../fonts/bootstrap/") !default;
 $icon-font-name: <%= self.icon_font_name %>;
 $icon-font-svg-id: <%= self.icon_font_svg_id %>;
 $padding-base-vertical: <%= self.padding_base_vertical %>;
@@ -766,4 +768,5 @@ $hr-border: <%= self.hr_border %>;
 */
 <% end %>
 
+@import 'bootstrap-sprockets';
 @import "bootstrap";
