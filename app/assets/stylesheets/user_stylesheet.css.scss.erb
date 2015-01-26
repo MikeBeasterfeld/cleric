@@ -1,6 +1,4 @@
 
-@import 'bootstrap-sprockets';
-
 $bootstrap-sass-asset-helper: false !default;
 $gray-base: <%= self.gray_base %>;
 $gray-darker: <%= self.gray_darker %>;
@@ -383,6 +381,7 @@ $page-header-border-color: <%= self.page_header_border_color %>;
 $dl-horizontal-offset: <%= self.dl_horizontal_offset %>;
 $hr-border: <%= self.hr_border %>;
 
+@import 'bootstrap-sprockets';
 @import "bootstrap";
 
 <% if Rails.env.development? %>
