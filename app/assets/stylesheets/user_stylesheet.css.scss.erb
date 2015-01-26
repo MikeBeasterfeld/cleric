@@ -1,6 +1,7 @@
 
-$bootstrap-sass-asset-helper: false !default;
+@import 'bootstrap-sprockets';
 
+$bootstrap-sass-asset-helper: false !default;
 $gray-base: <%= self.gray_base %>;
 $gray-darker: <%= self.gray_darker %>;
 $gray-dark: <%= self.gray_dark %>;
@@ -36,7 +37,7 @@ $headings-font-family: <%= self.headings_font_family %>;
 $headings-font-weight: <%= self.headings_font_weight %>;
 $headings-line-height: <%= self.headings_line_height %>;
 $headings-color: <%= self.headings_color %>;
-$icon-font-path: if($bootstrap-sass-asset-helper, "bootstrap/", "../fonts/bootstrap/") !default;
+$icon-font-path: "/assets/bootstrap/" !default;
 $icon-font-name: <%= self.icon_font_name %>;
 $icon-font-svg-id: <%= self.icon_font_svg_id %>;
 $padding-base-vertical: <%= self.padding_base_vertical %>;
@@ -382,8 +383,12 @@ $page-header-border-color: <%= self.page_header_border_color %>;
 $dl-horizontal-offset: <%= self.dl_horizontal_offset %>;
 $hr-border: <%= self.hr_border %>;
 
+@import "bootstrap";
+
 <% if Rails.env.development? %>
 /*
+
+hello: <%= self.methods %>
 
 $gray-base: <%= self.gray_base %>;
 $gray-darker: <%= self.gray_darker %>;
@@ -768,5 +773,3 @@ $hr-border: <%= self.hr_border %>;
 */
 <% end %>
 
-@import 'bootstrap-sprockets';
-@import "bootstrap";
