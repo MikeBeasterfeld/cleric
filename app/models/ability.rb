@@ -56,6 +56,8 @@ class Ability
       can :read, Blog, ["published_on <= ?", Date.today] do |blog|
         blog.published_on <= Date.today
       end
+
+      can :read, Stylesheet
     end
 
     #
