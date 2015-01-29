@@ -38,6 +38,8 @@ class Ability
       end
 
       can :update_password_for, User, :id => user.id
+
+      can :read, Stylesheet
     else
       Rails.logger.debug("--- abilities not logged in")
 
