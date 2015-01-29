@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @hidden_users = @users.where(:hide_on_bio_page => true).order(name: :asc) if current_user.admin?
+    @hidden_users = @users.where(:hide_on_bio_page => true).order(name: :asc) if current_user.try('admin?')
     @users = @users.where(:hide_on_bio_page => false).order(name: :asc)
   end
 
