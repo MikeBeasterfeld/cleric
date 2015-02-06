@@ -12,7 +12,26 @@
   =f.input :slug, :label => 'Slug (will be auto-generated if not provided):'
   =f.input :description, :input_html => {:rows => 5, :cols => 150}, :label => "A short description"
   =f.input :uploaded_image, as: :image_preview, input_html: {preview_version: :thumb}
-  =f.input :notes, :input_html => {:rows => 20, :cols => 150}, as: :bootsy, :label => "Show notes (appears below description)"
+
+  =#f.input :notes, :input_html => {:rows => 20, :cols => 150}, as: :bootsy, :label => "Show notes (appears below description)"
+  .row#contentrow
+    .col-md-12
+      =f.input :notes
+  .row
+    .col-md-3
+      %p.lead
+        Show notes (markdown)
+  .row
+    .col-md-6
+      #editor{:style => 'width: 100%; height: 300px'}
+      #status
+        #statusBar
+        #statusmessage No errors
+    .col-md-6
+      .panel.panel-default
+        .body
+          #content_preview
+
   =f.input :media
   =f.input :explicit
   =f.input :live

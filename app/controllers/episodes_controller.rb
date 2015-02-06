@@ -1,6 +1,6 @@
 class EpisodesController < ApplicationController
   load_and_authorize_resource :show, :find_by => :slug
-  load_and_authorize_resource :episode, :through => :show, :find_by => :slug
+  load_and_authorize_resource :episode, :through => :show, :find_by => :slug, :except => [:preview]
 
   # GET /episodes
   # GET /episodes.json
@@ -21,6 +21,7 @@ class EpisodesController < ApplicationController
 
   # GET /episodes/1/edit
   def edit
+    @include_bootsy = true
     @resource = [@show, @episode]
   end
 
@@ -58,8 +59,6 @@ class EpisodesController < ApplicationController
     end
   end
 
-  # DELETE /episodes/1
-  # DELETE /episodes/1.json
   def destroy
     @episode.destroy
     respond_to do |format|
@@ -67,6 +66,25 @@ class EpisodesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+  def preview
+#    authorize! :read, current_user
+    @notes = Episode.render_markdown(params[:content])
+    render
+
+    # begin
+    #   @episode.notes
+    # rescue Exception => e
+    #   if e.is_a?(::SyntaxError)
+    #     render json: { :error => e.message, :line =>  (exception.message.scan(/:(\d+)/).first || ["??"]).first }
+    #   else
+    #     line = (e.backtrace[0].scan(/:(\d+)/).first || ["??"]).first
+    #     render json: { :error => "Line #{line}: #{e.message}", :line => line }
+    #   end
+    # end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -25,6 +25,15 @@ class Episode < ActiveRecord::Base
     self.published_on ||= Date.current
   end
 
+  def self.render_markdown(string)
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+    markdown.render(string)
+  end
+
+  def notes
+    Episode.render_markdown(read_attribute(:notes))
+  end
+
   def number_and_part
     return "#{number}.#{part}" if !part.nil?
     number

@@ -30,6 +30,12 @@ Cleric::Application.routes.draw do
 
   root to: 'static_pages#index'
 
+  resources :episodes, :only => [:preview] do
+    collection do
+      post 'preview'
+    end
+  end
+
   resources :shows, :path => ''
 
   resources :shows, :path => '', :only => [] do

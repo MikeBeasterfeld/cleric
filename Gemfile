@@ -6,6 +6,15 @@ gem 'rails', '4.0.2'
 group :development, :test do
 	# Use sqlite3 as the database for Active Record
 	gem 'sqlite3'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+end
+
+group :test do
+  gem 'faker'
+  gem 'capybara'
+  gem 'guard-rspec'
+  gem 'launchy'
 end
 
 group :production do
@@ -78,3 +87,5 @@ gem 'ruby-mp3info'
 gem 'unicorn'
 
 gem 'sprockets_better_errors'
+
+gem 'redcarpet'
