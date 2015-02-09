@@ -1,4 +1,7 @@
-= simple_form_for [@show, @episode] do |f|
+%script
+  $(function () { $('[data-toggle="popover"]').popover() })
+
+=simple_form_for [@show, @episode] do |f|
   - if @episode.errors.any?
     #error_explanation
       %h2= "#{pluralize(@rss_feed.errors.count, "error")} prohibited this rss_feed from being saved:"
@@ -21,6 +24,10 @@
     .col-md-3
       %p.lead
         Show notes (markdown)
+    .col-md-9
+      .pull-right
+        %button.btn.btn-info{ :type => "button", 'data-toggle' => "popover", 'data-placement' => "top", 'data-html' => 'true', 'data-content' => '<em>*italic/emphasis*</em><br /><strong>**bold/strong**</strong><br />[text to link](url)<br />* list item 1<br />* list item 2' }
+          Markdown help
   .row
     .col-md-6
       #editor{:style => 'width: 100%; height: 300px'}
