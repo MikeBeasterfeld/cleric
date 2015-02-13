@@ -1,5 +1,7 @@
 Cleric::Application.routes.draw do
 
+  resources :roles
+
   resources :stylesheets
 
   resources :pages

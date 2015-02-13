@@ -93,7 +93,7 @@ class UsersController < ApplicationController
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      permitted = [:username, :name, :bio, :twitter, :password, :password_confirmation, :email, :show_titter, :show_email, :avatar, :hide_on_bio_page]
+      permitted = [:username, :name, :bio, :twitter, :password, :password_confirmation, :email, :show_titter, :show_email, :avatar, :hide_on_bio_page, :role_ids => []]
       permitted << :role if current_user.admin?
       params.require(:user).permit(permitted)
     end

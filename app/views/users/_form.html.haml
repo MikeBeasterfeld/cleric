@@ -12,10 +12,13 @@
   =f.input :bio, :input_html => {:rows => 20, :cols => 150}, as: :bootsy
   =f.input :twitter
   =f.input :email
-  =f.input :role, :collection => User.roles if current_user.admin?
+  =f.input :role, :collection => User.roles_list if current_user.admin?
   =f.input :show_twitter
   =f.input :show_email
   =f.input :avatar
   =f.input :hide_on_bio_page
+
+  =f.association :roles, :as => :check_boxes if current_user.admin?
+
   =f.button :submit
 

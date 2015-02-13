@@ -4,7 +4,7 @@
 =simple_form_for [@show, @episode] do |f|
   - if @episode.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@rss_feed.errors.count, "error")} prohibited this rss_feed from being saved:"
+      %h2= "#{pluralize(@episode.errors.count, "error")} prohibited this rss_feed from being saved:"
       %ul
         - @episode.errors.full_messages.each do |msg|
           %li= msg

@@ -19,6 +19,9 @@ class User < ActiveRecord::Base
   has_many :episodeguests
   has_many :guestepisodes, :through => :episodeguests, :source => :episode
 
+  has_many :userroles
+  has_many :roles, :through => :userroles
+
   validates_presence_of :name, :slug, :email
 
   after_initialize :set_defaults
@@ -48,8 +51,12 @@ class User < ActiveRecord::Base
     self.roles.include? self.role && !self.hide_on_bio_page
   end
 
-  def self.roles
+  def self.roles_list
     ['admin', 'editor', 'bio-only']
+  end
+
+  def has_role?(role_sym)
+    roles.any? { |r| r.name.underscore.to_sym == role_sym }
   end
 
   def self.sample
