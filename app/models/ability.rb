@@ -26,10 +26,6 @@ class Ability
       if user.id
         #abilies for logged in users
 
-        can [:read, :edit, :update, :audio], Episode, Episode.all do |episode|
-          episode.hosts.include?(user) || episode.guests.include?(user) || episode.live || episode.preview
-        end
-
         can [:edit, :update], User, :id => user.id
         can :update_password_for, User, :id => user.id
 
@@ -38,7 +34,15 @@ class Ability
         can :manage, UserTemplate if user.has_role? :templates
         can :manage, User if user.has_role? :users
         can :manage, Show if user.has_role? :shows
-        can :manage, Episodes if user.has_role? :episodes
+
+        if user.has_role? :episodes
+          can :manage, Episode if user.has_role? :episodes
+        else
+          can [:read, :edit, :update, :audio], Episode, Episode.all do |episode|
+            episode.hosts.include?(user) || episode.guests.include?(user) || episode.live || episode.preview
+          end
+        end
+
       end
     end
 
