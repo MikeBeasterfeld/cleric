@@ -16,9 +16,6 @@ class Ability
       can :read, User
       can :read, Stylesheet
 
-      can [:read, :audio], Episode, :live => true
-      can [:audio, :next], Episode, :preview => true
-
       can :read, Blog, ["published_on <= ?", Date.today] do |blog|
         blog.published_on <= Date.today
       end
@@ -36,13 +33,15 @@ class Ability
         can :manage, Show if user.has_role? :shows
 
         if user.has_role? :episodes
-          can :manage, Episode if user.has_role? :episodes
+          can :manage, Episode
         else
           can [:read, :edit, :update, :audio], Episode, Episode.all do |episode|
             episode.hosts.include?(user) || episode.guests.include?(user) || episode.live || episode.preview
           end
         end
-
+      else #not logged in
+        can [:read, :audio], Episode, :live => true
+        can [:audio, :next], Episode, :preview => true
       end
     end
 
