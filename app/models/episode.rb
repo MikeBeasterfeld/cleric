@@ -17,7 +17,7 @@ class Episode < ActiveRecord::Base
 
   validates_presence_of :title, :slug, :number
 
-  validates_uniqueness_of :number, :scope => :part
+  validates_uniqueness_of :number, :scope => [:show, :part]
 
   scope :latest, -> { order(published_on: :desc).first }
 
