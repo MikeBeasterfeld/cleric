@@ -58,6 +58,8 @@ gem 'mediaelement_rails'
 
 # file management
 gem 'carrierwave'
+gem 'carrierwave-ftp', :require => 'carrierwave/storage/ftp'
+gem 'carrierwave-aws'
 
 # configuration
 gem 'dotenv'
@@ -79,8 +81,6 @@ gem 'rmagick'
 gem 'cancancan'
 
 gem 'quiet_assets'
-
-gem 'carrierwave-ftp', :require => 'carrierwave/storage/ftp'
 
 gem 'ruby-mp3info'
 

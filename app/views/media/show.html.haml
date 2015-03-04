@@ -1,0 +1,22 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @medium.name
+%p
+  %b Type:
+  = @medium.filetype
+%p
+  %b Size:
+  = @medium.size
+%p
+  %b Length:
+  = @medium.length
+%p
+  %b Image:
+  =image_tag(@medium.media, :width => 300, :height => 300) if !@medium.media.nil?
+
+
+= link_to 'Edit', edit_medium_path(@medium)
+\|
+= link_to 'Back', media_path

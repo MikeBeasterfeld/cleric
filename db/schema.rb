@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150206184824) do
+ActiveRecord::Schema.define(version: 20150216205826) do
 
   create_table "blogs", force: true do |t|
     t.string   "title"
@@ -494,6 +494,19 @@ ActiveRecord::Schema.define(version: 20150206184824) do
     t.datetime "updated_at"
     t.string   "name"
     t.boolean  "active"
+  end
+
+  create_table "media", force: true do |t|
+    t.string   "name"
+    t.string   "type"
+    t.integer  "size"
+    t.integer  "length"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "localmedia"
+    t.string   "ftpmedia"
+    t.string   "awsmedia"
+    t.string   "filetype"
   end
 
   create_table "pages", force: true do |t|
@@ -1014,6 +1027,9 @@ ActiveRecord::Schema.define(version: 20150206184824) do
     t.boolean  "show_email"
     t.string   "avatar"
     t.boolean  "hide_on_bio_page"
+    t.string   "localmedia"
+    t.string   "ftpmedia"
+    t.string   "awsmedia"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

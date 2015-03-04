@@ -1,0 +1,28 @@
+%h1 Listing media
+
+%table.table
+  %tr
+    %th Name
+    %th 
+    %th Type
+    %th Size
+    %th Length
+    %th
+
+  - @media.each do |medium|
+    %tr
+      %td= medium.name
+      %td= image_tag(medium.media, :width => 100, :height => 100) if !medium.media.nil? && medium.image?
+      %td= medium.filetype
+      %td= medium.size
+      %td= medium.length
+      %td
+        = link_to 'Show', medium
+        |
+        = link_to 'Edit', edit_medium_path(medium)
+        |
+        = link_to 'Destroy', medium, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Media', new_medium_path

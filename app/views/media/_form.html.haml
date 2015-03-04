@@ -1,0 +1,21 @@
+= simple_form_for(@medium) do |f|
+  = f.error_notification
+
+  .form-inputs
+    =f.input :name
+    =f.input :localmedia if !ENV['no_localmedia']
+    =f.input :ftpmedia if !@medium.ftpmedia.ftp_host.blank?
+    =f.input :awsmedia if !@medium.awsmedia.aws_bucket.blank?
+
+  .form-actions
+    = f.button :submit
+
+=debug(@medium)
+
+=debug(@medium.localmedia)
+
+=debug(@medium.ftpmedia.ftp_host)
+
+=debug(@medium.awsmedia.methods)
+
+=debug(CarrierWave.methods)
