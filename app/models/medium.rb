@@ -46,5 +46,10 @@ class Medium < ActiveRecord::Base
   	end
   end
 
+  def self.asset_url (name)
+  	asset = self.find_by_name(name)
+  	asset.media if !asset.nil?
+  end
+
 end
 

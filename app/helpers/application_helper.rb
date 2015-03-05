@@ -28,4 +28,8 @@ module ApplicationHelper
     ENV['site_title'] || 'Cleric'
   end
 
+  def get_user_asset(name)
+    Medium.asset_url(name)
+  end
+
 end

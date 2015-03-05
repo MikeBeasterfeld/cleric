@@ -12,7 +12,7 @@
   - @media.each do |medium|
     %tr
       %td= medium.name
-      %td= image_tag(medium.media, :width => 100, :height => 100) if !medium.media.nil? && medium.image?
+      %td= image_tag(get_user_asset(medium.name), :width => 100, :height => 100) if !medium.media.nil? && medium.image?
       %td= medium.filetype
       %td= medium.size
       %td= medium.length
