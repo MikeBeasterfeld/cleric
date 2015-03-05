@@ -29,7 +29,8 @@ class UserTemplatesController < ApplicationController
 
     if true
       begin
-        render 
+        self.formats = [:json, :html]
+        render
       rescue Exception => e
         if e.is_a?(::SyntaxError)
           render json: { :error => e.message, :line =>  (exception.message.scan(/:(\d+)/).first || ["??"]).first }

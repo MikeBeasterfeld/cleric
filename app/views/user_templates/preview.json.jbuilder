@@ -1,1 +1,1 @@
-json.content render_template(self, @template_content)
+json.content render inline: @template_content, type: :haml
